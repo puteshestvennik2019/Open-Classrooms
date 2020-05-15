@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <title>Artur Kasprzak Portfolio Website</title>
+  </head>
+  <body>
+    <main>
+      <div class="terminal-window" id="terminal">
+        <pre>
+          <code id="terminal-code">
+            HTTP/2 200
+            content-type: text/html; charset=UTF-8
+            date: <span><script> document.write(new Date()); </script></span>
+            server: Apache
+            x-powered-by: PHP/7.3.17
+            link: &lt;https://mywebsite.com/>; rel=shortlink
+            &lt;!DOCTYPE html>
+            &lt;html lang="en-US">
+            &lt;head>
+            &lt;meta charset="UTF-8">
+            &lt;meta name="viewport" content="width=device-width, initial-scale=1">
+            &lt;/head>
+            <span class="h1">~$ Hi, my name is <strong>Artur</strong>.</span>
+            <span class="h1">~$ I am a future software developer.</span>
+            <span class="h1">~$ This was my portfolio in 2020_</span>
+          </code>
+        </pre>
+      </div>
+    </main> 
+    <script>
+      let i = 0;
+      let txt = document.getElementById("terminal-code").textContent;
+      let speed = 10;
+
+      document.addEventListener('DOMContentLoaded', function typeWriter() {
+        if (i < txt.length) {
+          if (txt.charAt(i) == "\n") {document.getElementById("terminal").innerHTML += "<br>"};
+          document.getElementById("terminal").innerHTML += txt.charAt(i);
+          i++;
+          setTimeout(typeWriter, speed);
+        }
+      }, false)
+    </script>
+  </body>
+</html>
