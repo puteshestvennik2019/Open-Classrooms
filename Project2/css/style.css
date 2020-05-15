@@ -1,0 +1,272 @@
+body {
+
+	background: #E8E8E8;
+}
+
+main {
+	width: 60%;
+	min-width: 900px;
+	background: white;
+	margin: auto;
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	font-family: 'Arimo', sans-serif;
+	box-shadow: 4px 4px #888888;
+}
+
+@media screen and (max-width: 1000px) {
+	main {
+		width: 100%;
+	}
+	#info img {
+		display: none;
+	}
+}
+
+@media print, screen and (max-width: 600px) {
+	#info {
+		display: none !important;
+	}
+
+	main {
+		box-shadow: none;
+		color-adjust: exact !important;
+	}
+
+	#header-media-query {
+		width: 95%;
+		display: flex !important;
+		justify-content: space-between;
+		align-items: flex-end;
+	}
+
+	#header-media-query h4, h2{
+		margin: 5px;
+	}
+}
+
+#info {
+	width: 100%;
+	height: 100%;
+	background: #D3D7DF;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	text-shadow: 1px 1px #666666;
+}
+
+#info img {
+	margin-top: 30px;
+	border-radius: 70%;
+	align-self: center;
+}
+
+#info h1 {
+	margin-bottom: 0px;
+	color: #6a040f;
+}
+
+#info h3 {
+	margin-top: 5px;
+}
+
+#info #certification h2 {
+	color: #1b3b23;
+	margin-bottom: 10px;
+}
+
+#info #certification h4 {
+	width: 80%;
+	text-align: center;
+	margin-bottom: 30px;
+}
+
+#info #certification .fcc {
+	margin: 5px;
+}
+
+#info #certification {
+	margin: auto;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+#info h4 {
+	text-shadow: none;
+}
+
+#info h4 a:link {
+	text-decoration: none;
+	font-size: 16px;
+}
+
+#info h4 a:hover {
+	color: black;
+	text-decoration: none;
+}
+
+#info #contact {
+	margin: auto;
+	align-self: start;
+}
+
+#info #contact h4 {
+	margin: 5px;
+}
+
+#info #contact i {
+	width:30px;
+	margin-right: 10px;
+}
+
+#resume {
+	width: 96%;
+	min-width: 600px;
+	margin-left: 30px;
+}
+
+#header-media-query {
+	display: none;
+}
+
+#education {
+	height: 210px;
+}
+
+#work {
+	height: 360px;
+}
+
+.cv-paragraph {
+	margin-bottom: 40px;
+	width: 92%;
+	border-style: solid;
+	border-color: #4c544f;
+	border-width: 0 0 3px 3px;
+  	background: white;
+  	position: relative;
+}
+
+.cv-paragraph-title {
+	background: #D3D3D3;
+	height: 35px;
+	width: 100%;
+	line-height: 35px;
+}
+
+.cv-paragraph-title h4 {
+	font-size: 25px;
+	margin-left: 10px;
+}
+
+.cv-paragraph-title .h4-title {
+	font-size: 30px;
+}
+
+.icon-background i{
+	margin-left: -25px;
+	margin-right: 20px;
+	margin-top: -5px;
+	width: 40px;
+	height: 40px;
+	line-height: 35px;
+	border-radius: 50%;
+	border-width: 2px;
+	padding-left: 2px;
+	font-size: 25px;
+    text-align: center;
+    vertical-align: middle;
+	border-style: solid;
+	border-color: black;
+	background: white;
+	float:left;
+}
+
+.paragraph-list {
+	padding-left: 20px;
+}
+
+ul li{
+	list-style: none;
+  	align-items: start;
+  	display: flex;
+  	padding-bottom: 5px;
+  	font-size: 18px;
+}
+
+.cv-paragraph ul li .date {
+  	width: 210px;
+}
+
+/* (-n + 3) due to one element displayed in media query, otherwise (-n + 2) */
+.cv-paragraph:nth-child(-n+3) ul li::before {
+  	width: 4px;
+  	height: 4px;
+  	margin-top: 5px;
+  	border: 3px solid black;
+  	background: black;
+  	border-radius: 50%;
+  	left: -6px;
+  	position: absolute;
+  	content: "";
+}
+
+.cv-paragraph .item {
+  	font-size: 18px;
+  	padding-bottom: 2px;
+	opacity: 0.9;
+	width: 100%;
+	padding-right: 15px;
+}
+
+.cv-paragraph .item .role {
+	font-weight: 900;
+	opacity: 1;
+}
+
+.cv-paragraph .item .key {
+	opacity: 1;
+	font-weight: 900;
+}
+
+.cv-paragraph small {
+	font-family: 'Open Sans Condensed', sans-serif;
+  	font-size: 16px;
+  	padding-bottom: 2px;
+  	display: block;
+}
+
+.cv-paragraph #skills {
+	display: grid;
+	grid-template-areas: "left right";
+	width: 100%;
+}
+
+.cv-paragraph .progress-bar {
+	height: 16px;
+	background: white;
+	width: 70%;
+	border: solid gray 1px;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+.cv-paragraph #skills li .label {
+	width: 160px;
+	font-size: 16px;
+	text-align: right;
+	padding-right: 10px;
+}
+
+.cv-paragraph #skills #left {
+	padding-right: 10px;
+	padding-left: 0px;
+}
+
+.cv-paragraph .progress-bar .progress {
+	background: red;
+	width: 20%;
+	display: inline-block;
+	content: " ";
+}
