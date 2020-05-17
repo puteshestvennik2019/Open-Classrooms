@@ -1,0 +1,29 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "This is my portfolio",
+  "main": "index.js",
+  "scripts": {
+    "sass": "sass --watch ./sass/main.scss:./css/style.css --style expanded",
+    "prefix": "postcss ./public/css/style.css --use autoprefixer -d ./public/css/prefixed/"
+  },
+  "browserlist": "last 4 versions",
+  "author": "ArturK",
+  "license": "ISC",
+  "homepage": "https://github.com/puteshestvennik2019/Open-Classrooms#readme",
+  "dependencies": {
+    "npm-sass": "^2.3.0",
+    "sass": "^1.26.5"
+  },
+  "devDependencies": {},
+  "keywords": [
+    "portfolio"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/puteshestvennik2019/Open-Classrooms.git"
+  },
+  "bugs": {
+    "url": "https://github.com/puteshestvennik2019/Open-Classrooms/issues"
+  }
+}

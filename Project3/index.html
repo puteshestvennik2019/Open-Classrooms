@@ -1,52 +1,149 @@
 <!DOCTYPE html>
-
-<html>
-  <head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta charset="utf-8">
-    <link rel="stylesheet" type="text/css" href="css/style.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Roboto+Mono&display=swap" rel="stylesheet"> 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./css/style.css">
 
-    <title>Artur Kasprzak Portfolio Website</title>
-  </head>
-  <body>
-    <main>
-      <div class="terminal-window" id="terminal">
-        <pre>
-          <code id="terminal-code">
-            HTTP/2 200
-            content-type: text/html; charset=UTF-8
-            date: <span><script> document.write(new Date()); </script></span>
-            server: Apache
-            x-powered-by: PHP/7.3.17
-            link: &lt;https://mywebsite.com/>; rel=shortlink
-            &lt;!DOCTYPE html>
-            &lt;html lang="en-US">
-            &lt;head>
-            &lt;meta charset="UTF-8">
-            &lt;meta name="viewport" content="width=device-width, initial-scale=1">
-            &lt;/head>
-            <span class="h1">~$ Hi, my name is <strong>Artur</strong>.</span>
-            <span class="h1">~$ I am a future software developer.</span>
-            <span class="h1">~$ This was my portfolio in 2020_</span>
-          </code>
-        </pre>
+    <title>Artur Kasprzak | SDE</title>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo">
+          <a href="#home"><img class="logo__img" src="./public/img/logo.png" alt=""><img class="logo__img--bright" src="./public/img/logo-bright.png" alt=""></a>
+        </div>
+        <button class="nav-toggle" aria-label="toggle navigation">
+          <span class="hamburger"></span>
+        </button>
+        <nav class="nav">
+          <ul class="nav__list">
+            <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
+            <li class="nav__link"> <a href="#work"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
+            <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
+          </ul>
+          <div class="nav__link--resume"> <a class="btn" href="/resume.html">resume</a></div> 
+        </nav>
+    </header>
+
+    <section class="intro" id="home">
+      <div class="intro__logo">
+        <img src="./public/img/logo.png" alt="logo-intro">
       </div>
-    </main> 
-    <script>
+      <div class="intro__code" id="intro__code--anim">
+        <span id="terminal"></span><span class="cursor">_</span>
+        <!--
+        <p class="section__subtitle section__subtitle__intro">> I write code!</p>
+        <p class="section__subtitle section__subtitle__intro">>_</p>
+      -->
+      </div>
+    </section>
+    <!--
+    <main class="container">
+        <div class="proj-grid">
+            <section class="proj-prev" onclick="location.href='/project.html'" >
+                <div class="proj-prev__image">
+                        <img src="/public/img/photography_1280w.jpg" srcset="
+                        /public/img/photography_3000w.jpg 3000w,
+                        /public/img/photography_1920w.jpg 1920w,
+                        /public/img/photography_0864w.jpg 864w,
+                        /public/img/photography_0640w.jpg 640w,
+                        /public/img/photography_0640w.jpg 640w,
+                        /public/img/photography_0420w.jpg 420w
+                    " alt="project title goes here" >
+                </div>
+                <h1 class="proj-prev__heading">
+                    Project Title
+                </h1>
+                <p class="proj-prev__byline">
+                    project keywords would go here
+                </p>
+            </section>
+            <section class="proj-prev">
+                <div class="proj-prev__image">
+                        <img src="/public/img/photography_1280w.jpg" srcset="
+                        /public/img/photography_3000w.jpg 3000w,
+                        /public/img/photography_1920w.jpg 1920w,
+                        /public/img/photography_0864w.jpg 864w,
+                        /public/img/photography_0640w.jpg 640w,
+                        /public/img/photography_0640w.jpg 640w,
+                        /public/img/photography_0420w.jpg 420w
+                    " alt="project title goes here" >
+                </div>
+                <h1 class="proj-prev__heading">
+                    Project Title
+                </h1>
+                <p class="proj-prev__byline">
+                    project keywords would go here
+                </p>
+            </section>
+            <section class="proj-prev">
+                    <div class="proj-prev__image">
+                            <img src="/public/img/photography_1280w.jpg" srcset="
+                            /public/img/photography_3000w.jpg 3000w,
+                            /public/img/photography_1920w.jpg 1920w,
+                            /public/img/photography_0864w.jpg 864w,
+                            /public/img/photography_0640w.jpg 640w,
+                            /public/img/photography_0640w.jpg 640w,
+                            /public/img/photography_0420w.jpg 420w
+                        " alt="project title goes here" >
+                    </div>
+                    <h1 class="proj-prev__heading">
+                        Project Title
+                    </h1>
+                    <p class="proj-prev__byline">
+                        project keywords would go here
+                    </p>
+                </section>            <section class="proj-prev">
+                        <div class="proj-prev__image">
+                                <img src="/public/img/photography_1280w.jpg" srcset="
+                                /public/img/photography_3000w.jpg 3000w,
+                                /public/img/photography_1920w.jpg 1920w,
+                                /public/img/photography_0864w.jpg 864w,
+                                /public/img/photography_0640w.jpg 640w,
+                                /public/img/photography_0640w.jpg 640w,
+                                /public/img/photography_0420w.jpg 420w
+                            " alt="project title goes here" >
+                        </div>
+                        <h1 class="proj-prev__heading">
+                            Project Title
+                        </h1>
+                        <p class="proj-prev__byline">
+                            project keywords would go here
+                        </p>
+                    </section>
+        </div>
+        
+    </main>
+-->
+    <script>   
       let i = 0;
-      let txt = document.getElementById("terminal-code").textContent;
-      let speed = 10;
+      let txt = "> My name is Artur\n> I write code\n>";
+      let speed = 30;
+      let pause = 600;
+      let flag = false;
 
-      document.addEventListener('DOMContentLoaded', function typeWriter() {
-        if (i < txt.length) {
-          if (txt.charAt(i) == "\n") {document.getElementById("terminal").innerHTML += "<br>"};
-          document.getElementById("terminal").innerHTML += txt.charAt(i);
-          i++;
-          setTimeout(typeWriter, speed);
+      document.addEventListener('DOMContentLoaded', typeWriter(), false);
+
+      function typeWriter() {
+          if (flag) {
+            flag = false;
+            document.getElementById("terminal").innerHTML += '<br>';
+          }
+          if (i < txt.length) {
+            if (txt.charAt(i) == '\n') {
+              setTimeout(typeWriter, pause);
+              flag = true;
+            } else {
+              document.getElementById("terminal").innerHTML += txt.charAt(i);
+              setTimeout(typeWriter, speed);
+            }
+            i++;
+          }
         }
-      }, false)
     </script>
   </body>
 </html>
