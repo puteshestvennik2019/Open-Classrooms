@@ -33,6 +33,13 @@ body {
   margin: 0;
 }
 
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
 img {
   max-width: 100%;
   display: block;
@@ -67,6 +74,9 @@ h3 {
   width: 100%;
   margin: auto;
 }
+.intro__logo img {
+  animation: 2s display;
+}
 
 .intro__code {
   margin: auto 0px;
@@ -82,6 +92,7 @@ a {
   height: 80px;
   position: relative;
   z-index: 1;
+  opacity: 0;
 }
 
 .logo__img--bright {
@@ -103,19 +114,25 @@ a {
 nav {
   display: flex;
   align-items: center;
+  margin-right: 20px;
 }
-
-.nav__link {
+nav .nav__link {
   margin: 0px 20px;
   font-family: "Roboto Mono", monospace;
+}
+nav .nav__link--resume {
+  animation: intro--btn 5s;
+}
+nav .nav__list {
+  animation: intro--list 6s;
 }
 
 .btn {
   margin: 2px;
   display: inline-block;
-  padding: 13px;
+  padding: 9px 15px;
   border: solid 2px #fcba03;
-  border-radius: 5px;
+  border-radius: 4px;
   position: relative;
   z-index: 1;
 }
@@ -219,5 +236,44 @@ header {
   }
 }
 */
+@keyframes intro--btn {
+  0% {
+    opacity: 0;
+  }
+  95% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes intro--list {
+  0% {
+    transform: translate(100%);
+    opacity: 0;
+  }
+  80% {
+    transform: translate(100%);
+    opacity: 0;
+  }
+}
+@keyframes display {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  65% {
+    transform: scale(0.6);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 
 /*# sourceMappingURL=style.css.map */

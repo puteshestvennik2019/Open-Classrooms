@@ -12,7 +12,7 @@
 </head>
 <body>
 
-    <header class="header">
+    <header class="header" id="navbar">
         <div class="logo">
           <a href="#home"><img class="logo__img" src="./public/img/logo.png" alt=""><img class="logo__img--bright" src="./public/img/logo-bright.png" alt=""></a>
         </div>
@@ -34,14 +34,13 @@
         <img src="./public/img/logo.png" alt="logo-intro">
       </div>
       <div class="intro__code" id="intro__code--anim">
-        <span id="terminal"></span><span class="cursor">_</span>
+        <span id="terminal">></span><span class="cursor">_</span>
         <!--
         <p class="section__subtitle section__subtitle__intro">> I write code!</p>
         <p class="section__subtitle section__subtitle__intro">>_</p>
       -->
       </div>
     </section>
-    <!--
     <main class="container">
         <div class="proj-grid">
             <section class="proj-prev" onclick="location.href='/project.html'" >
@@ -118,32 +117,42 @@
         </div>
         
     </main>
--->
     <script>   
       let i = 0;
-      let txt = "> My name is Artur\n> I write code\n>";
+      let txt = " My name is Artur\n> I write code\n>";
       let speed = 30;
       let pause = 600;
       let flag = false;
 
-      document.addEventListener('DOMContentLoaded', typeWriter(), false);
+      setTimeout(() => { document.addEventListener('DOMContentLoaded', typeWriter(), false); }, pause * 3);
 
       function typeWriter() {
-          if (flag) {
-            flag = false;
-            document.getElementById("terminal").innerHTML += '<br>';
-          }
-          if (i < txt.length) {
-            if (txt.charAt(i) == '\n') {
-              setTimeout(typeWriter, pause);
-              flag = true;
-            } else {
-              document.getElementById("terminal").innerHTML += txt.charAt(i);
-              setTimeout(typeWriter, speed);
-            }
-            i++;
-          }
+        if (flag) {
+          flag = false;
+          document.getElementById("terminal").innerHTML += '<br>';
         }
+        if (i < txt.length) {
+          if (txt.charAt(i) === '\n') {
+            setTimeout(typeWriter, pause);
+            flag = true;
+          } else {
+            document.getElementById("terminal").innerHTML += txt.charAt(i);
+            setTimeout(typeWriter, speed);
+          }
+          i++;
+        }
+      }
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60 ) {
+          document.getElementById("navbar").style.top = "-65px";
+        }  else if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
+          document.getElementById("navbar").style.top = "-15px";
+        } else {
+          document.getElementById("navbar").style.top = "0px";
+        }
+      }
     </script>
   </body>
 </html>
