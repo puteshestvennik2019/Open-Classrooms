@@ -13,8 +13,8 @@
 <body>
 
     <header class="header" id="navbar">
-        <div class="logo">
-          <a href="#home"><img class="logo__img" src="./public/img/logo.png" alt=""><img class="logo__img--bright" src="./public/img/logo-bright.png" alt=""></a>
+        <div class="logo" id="logo--hide">
+          <a href="#home"><img class="logo__img" id="logo__img" src="./public/img/logo.png" alt=""><img class="logo__img--bright" src="./public/img/logo-bright.png" alt=""></a>
         </div>
         <button class="nav-toggle" aria-label="toggle navigation">
           <span class="hamburger"></span>
@@ -31,7 +31,7 @@
 
     <section class="intro" id="home">
       <div class="intro__logo">
-        <img src="./public/img/logo.png" alt="logo-intro">
+        <img src="./public/img/logo.png" id="intro__logo" alt="logo-intro">
       </div>
       <div class="intro__code" id="intro__code--anim">
         <span id="terminal">></span><span class="cursor">_</span>
@@ -119,16 +119,19 @@
     </main>
     <script>   
       let i = 0;
+      // boolean variable to flag timeout before moving cursor to next line - personal pref
       let flag = false;
       const pauseAtEnd = pauseAtStart = 2000;
-      const txt = " My name is Artur\n> I write code\n>";
       const writtingSpeed = 30;
       const nextLinePause = 600;
+      const txt = " My name is Artur\n> I write code\n>";
+
+      document.getElementById("logo--hide").classList.add("hide");
 
       // disable scroll while intro is played
-      document.body.style.overflow = "hidden";
+      // document.body.style.overflow = "hidden";
 
-      setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter(), false);}, pauseAtStart);
+      setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter());}, pauseAtStart);
 
       function typeWriter() {
         if (flag) {
@@ -150,11 +153,21 @@
         }
         else {
           // enable scroll and remove listener
-          document.body.style.overflow = "";
-          document.removeEventListener('DOMContentLoaded', typeWriter());
+          //document.body.style.overflow = "";
+          document.removeEventListener('DOMContentLoaded', typeWriter);
         }
         i++;
       }
+
+      let logoPic = document.getElementById("intro__logo");
+      logoPic.addEventListener("animationend", switchLogos);
+
+      function switchLogos() {
+          document.getElementById("logo__img").style.opacity = "1";
+          document.getElementById("logo--hide").classList.remove("hide");
+          logoPic.removeEventListener("animationend", switchLogos);
+      }
+
 
       window.onscroll = function() {navbarToggle()};
       let prevPos = 0;
@@ -187,20 +200,9 @@
 
           prevPos = curPos;
         }
-
-
-
-
-/*
-        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
-          document.getElementById("navbar").style.top = "-65px";
-        }  else if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
-          document.getElementById("navbar").style.top = "-15px";
-        } else {
-          document.getElementById("navbar").style.top = "0px";
-        }
-        */
       }
+
+
     </script>
   </body>
 </html>

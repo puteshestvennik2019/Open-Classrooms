@@ -38,6 +38,8 @@ $fs-rest: 1rem;
 
 *, *::before, *::after {box-sizing: border-box;}
 
+/* Global properties */
+
 body {
 	background: $colour-primary;
 	color: $colour-secondary;
@@ -45,15 +47,6 @@ body {
 	font-size: $fs-rest;
 	line-height: 1.3;
 	margin: 0;
-}
-
-header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	width: 100%;
-	transition: top .5s
-
 }
 
 img {
@@ -72,57 +65,18 @@ h1, #terminal { font-size: $fs-h1; }
 h2 { font-size: $fs-h2; }
 h3 { font-size: $fs-h3; }
 
-/* Sections */
+/* Sections and elements */
 
-.intro {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	height: 100vh;
-}
-
-.intro__logo {
-	width: 100%;
-	margin : auto;
-	img {
-		animation: 2s display;
-	}
-}
-
-.intro__code {
-	margin: auto 0px;
-}
-
-a {
-	color: $colour-secondary;
-	text-decoration: none;
-}
-
-.logo__img {
-	width: 80px;
-	height: 80px;  
-    position: relative;    
-    z-index: 1;
-    opacity: 0;
-
-}
-
-.logo__img--bright {
-	width: 80px;
-	height: 80px;
-	position: absolute;
+header {
+	position: fixed;
 	top: 0;
-	left: 40px;
-	opacity: 0;
-	z-index: -1;
-    transition: opacity 300ms;
-}
-
-@media (min-width: 800px) {
-	.logo__img {
-		&:hover + .logo__img--bright {
-			opacity: 1;
-		}
-    }
+	left: 0;
+	width: 100%;
+	// hide / display animation
+	transition: top .5s;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
 nav {
@@ -140,6 +94,75 @@ nav {
 	.nav__list {
 		animation: intro--list 6s;
 	}
+}
+
+.hide {
+	position: relative;
+	left: -9999px;
+	top: -9999px;
+}
+
+.intro {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	height: 100vh;
+}
+
+.intro__logo {
+	width: 100%;
+	margin : auto;
+	img {
+		animation: 7s display;
+	animation-fill-mode: forwards;
+	}
+}
+
+.intro__code {
+	margin: auto 0px;
+}
+
+a {
+	color: $colour-secondary;
+	text-decoration: none;
+	&:hover >.char{
+        color: $colour-accent;
+    }
+}
+
+// brackets around nav list items, which highlight when hovered over
+.char {
+    font-weight: 900;
+	transition: color 250ms font 250ms;
+}
+
+.logo__img {
+	width: 80px;
+	height: 80px;  
+    position: relative; 
+    left: 40px;   
+    z-index: 1;
+    opacity: 0;
+
+}
+
+.logo__img--bright {
+	width: 80px;
+	height: 80px;
+	position: absolute;
+	top: 0;
+	left: 40px;
+	opacity: 0;
+	z-index: -1;
+    transition: opacity 300ms;
+}
+
+// highlights when hovered over - only display on large screens
+@media (min-width: 800px) {
+	.logo__img {
+		&:hover + .logo__img--bright {
+			opacity: 1;
+		}
+    }
 }
 
 .btn {
@@ -172,25 +195,8 @@ nav {
 
 }
 
-a {
-	&:hover >.char{
-        color: $colour-accent;
-    }
-}
-
-.char {
-    font-weight: 900;
-	transition: color 250ms font 250ms;
-}
-
 .nav-toggle {
 	display: none;
-}
-
-header {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
 }
 
 .nav__list {
@@ -287,18 +293,25 @@ header {
 	0% {
 		opacity: 0;
 	}
-	40% {
+	8% {
 		opacity: 0;
 	}
-	65% {
+	13% {
 		transform: scale(0.6);
 	}
-	75% {
+	15% {
 		transform: scale(1.2);
 	}
-	100% {
+	20% {
 		transform: scale(1);
 		opacity: 1;
 	}
+	80% {
+		transform: scale(1);
+		opacity: 1;
+	}
+	90%  {transform: translate(0, 0); opacity: 0.8;}
+    99% {transform: scale(.5) translate(-450px, -550px); opacity: 0;}
+    100% {transform: scale(0.1)  translate(-11450px, -11550px); }
 }
 
