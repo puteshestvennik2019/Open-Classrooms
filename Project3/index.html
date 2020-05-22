@@ -119,12 +119,16 @@
     </main>
     <script>   
       let i = 0;
-      let txt = " My name is Artur\n> I write code\n>";
-      let speed = 30;
-      let pause = 600;
       let flag = false;
+      const pauseAtEnd = pauseAtStart = 2000;
+      const txt = " My name is Artur\n> I write code\n>";
+      const writtingSpeed = 30;
+      const nextLinePause = 600;
 
-      setTimeout(() => { document.addEventListener('DOMContentLoaded', typeWriter(), false); }, pause * 3);
+      // disable scroll while intro is played
+      document.body.style.overflow = "hidden";
+
+      setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter(), false);}, pauseAtStart);
 
       function typeWriter() {
         if (flag) {
@@ -133,25 +137,69 @@
         }
         if (i < txt.length) {
           if (txt.charAt(i) === '\n') {
-            setTimeout(typeWriter, pause);
+            setTimeout(typeWriter, nextLinePause);
             flag = true;
           } else {
             document.getElementById("terminal").innerHTML += txt.charAt(i);
-            setTimeout(typeWriter, speed);
+            setTimeout(typeWriter, writtingSpeed);
           }
-          i++;
         }
+        else if (i === txt.length) {
+          // wait for other elements to finish loading
+          setTimeout(typeWriter, pauseAtEnd);
+        }
+        else {
+          // enable scroll and remove listener
+          document.body.style.overflow = "";
+          document.removeEventListener('DOMContentLoaded', typeWriter());
+        }
+        i++;
       }
-      window.onscroll = function() {scrollFunction()};
 
-      function scrollFunction() {
-        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60 ) {
+      window.onscroll = function() {navbarToggle()};
+      let prevPos = 0;
+      let scrollingDown = false;
+
+      function navbarToggle() {
+        // document.body.scrollTop - Safari
+        // document.documentElement.scrollTop - the rest
+        // let curPos = window.pageYOffset;
+
+        let curPos = document.body.scrollTop || document.documentElement.scrollTop;
+
+        // wait for scroll to 'settle'
+        if (Math.abs(curPos - prevPos) > 30) {
+          let diff = prevPos - curPos;
+
+          // scroll down / navbar up
+          if (diff < 0) {
+            if (!scrollingDown) {
+              document.getElementById("navbar").style.top = "-15px";
+              scrollingDown = true;
+            }
+            else document.getElementById("navbar").style.top = "-65px";
+          }
+          // else scroll up / display navbar
+          else {
+            scrollingDown = false;
+            document.getElementById("navbar").style.top = "0px";
+          }
+
+          prevPos = curPos;
+        }
+
+
+
+
+/*
+        if (document.body.scrollTop > 60 || document.documentElement.scrollTop > 60) {
           document.getElementById("navbar").style.top = "-65px";
         }  else if (document.body.scrollTop > 30 || document.documentElement.scrollTop > 30) {
           document.getElementById("navbar").style.top = "-15px";
         } else {
           document.getElementById("navbar").style.top = "0px";
         }
+        */
       }
     </script>
   </body>

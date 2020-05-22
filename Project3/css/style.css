@@ -38,6 +38,7 @@ header {
   top: 0;
   left: 0;
   width: 100%;
+  transition: top 0.5s;
 }
 
 img {
@@ -67,7 +68,7 @@ h3 {
 .intro {
   display: grid;
   grid-template-columns: 1fr 2fr;
-  height: 85vh;
+  height: 100vh;
 }
 
 .intro__logo {
