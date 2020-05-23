@@ -125,7 +125,9 @@
       const writtingSpeed = 30;
       const nextLinePause = 600;
       const txt = " My name is Artur\n> I write code\n>";
+      const terminal = document.getElementById("terminal");
 
+      // hide this element until switchLogos has terminated
       document.getElementById("logo--hide").classList.add("hide");
 
       // disable scroll while intro is played
@@ -134,16 +136,21 @@
       setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter());}, pauseAtStart);
 
       function typeWriter() {
+        console.log(i);
         if (flag) {
           flag = false;
-          document.getElementById("terminal").innerHTML += '<br>';
+          // keep '>' exclusively in last line
+          let newTxt = terminal.innerHTML;
+          newTxt = newTxt.replace('&gt;', '&nbsp;');
+          terminal.innerHTML = newTxt;
+          terminal.innerHTML += '<br>';
         }
         if (i < txt.length) {
           if (txt.charAt(i) === '\n') {
             setTimeout(typeWriter, nextLinePause);
             flag = true;
           } else {
-            document.getElementById("terminal").innerHTML += txt.charAt(i);
+            terminal.innerHTML += txt.charAt(i);
             setTimeout(typeWriter, writtingSpeed);
           }
         }
@@ -159,8 +166,70 @@
         i++;
       }
 
+      document.addEventListener("scroll", clearTerminal);
+      
+      function clearTerminal() {
+        document.removeEventListener("scroll", clearTerminal);
+        let txt = terminal.innerHTML;
+        let i = txt.length - 1;
+        let running;
+
+        if (running) return;
+
+        running = setInterval(function() {
+          if (i > 0) {
+            // prevent scrolling until animation is finished - for reusability, this should not be part of this function
+            window.scrollTo(0, 0);
+            console.log(txt.charAt(i));
+            console.log(i);
+            if (txt.charAt(i) === ';') {
+              console.log(';');
+              let pointer = i - 1;
+              while (pointer >= 0 && txt.charAt(pointer) != '&') {
+                pointer--;
+                // this is not character entity, return
+                if (i - pointer > 5) break;
+              }
+              if (txt.substring(pointer, i + 1) === '&gt;') {
+                // del break line
+                i -= 4;
+                // find prev break line and move 'active line cursor' there
+                let index = findMatch(txt.substring(0, i), '<br>', true);
+
+                if (index < 0) {
+                  txt = '&gt;' + txt;
+                }
+                else {
+                  index += 4;
+                  txt = txt.substring(0, index) + '&gt;' + txt.substring(index, i);
+                }
+              }
+              if (txt.charAt(pointer) === '&') i = pointer;
+            }
+            txt = txt.substring(0, i);
+            i--;
+            terminal.innerHTML = txt;
+          }
+        }, 50);
+      }
+
+      // returns first occurance of substring in txt if last = false or last occurance otherwise
+      function findMatch(txt, substring, last = false) {
+        console.log("function called");
+        let res;
+        let index = txt.indexOf(substring);
+        if (!last || index < 0) return index;
+        while(index > 0) {
+          res = index;
+          index = txt.indexOf(substring, index + 1);
+        }
+        return res;
+      }
+
+
       let logoPic = document.getElementById("intro__logo");
       logoPic.addEventListener("animationend", switchLogos);
+
 
       function switchLogos() {
           document.getElementById("logo__img").style.opacity = "1";
