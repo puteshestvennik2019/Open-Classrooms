@@ -21,7 +21,8 @@
 */
 
 $colour-primary: #0A1A30;
-$colour-secondary: #efefef;
+$colour-secondary: #1c3557;
+$colour-font: #efefef;
 $colour-accent: #fcba03;
 $colour-white: #fff;
 $colour-invalid: #DB464B;
@@ -31,7 +32,7 @@ $ff-secondary: 'Roboto Mono', monospace;
 $fw-bold: 900;
 $fs-h1: 3rem;
 $fs-h2: 2.25rem;
-$fs-h3: 1.25rem;
+$fs-h3: 1.5rem;
 $fs-rest: 1rem;
 
 /* add media variables */
@@ -42,12 +43,12 @@ $fs-rest: 1rem;
 
 body {
 	background: $colour-primary;
-	color: $colour-secondary;
-	padding: 0px 40px;
+	color: $colour-font;
+	padding: 0 2.5em;
 	font-size: $fs-rest;
-	line-height: 1.3;
+	line-height: 1.2;
 	margin: 0;
-	font-family: $ff-secondary;
+	font-family: $ff-primary;
 }
 
 img {
@@ -60,7 +61,6 @@ img {
 h1, h2, h3, #terminal {
 	line-height: 1.1;
 	margin: 0;
-	font-family: $ff-primary;
 }
 
 h1, #terminal { font-size: $fs-h1; }
@@ -68,6 +68,8 @@ h2 { font-size: $fs-h2; }
 h3 { font-size: $fs-h3; }
 
 /* Sections and elements */
+
+// ->->-> Header <-<-<-
 
 header {
 	position: fixed;
@@ -79,14 +81,20 @@ header {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+  	z-index: 100;
+  	background:  $colour-primary;
+}
+
+.header--lifted {
+  	box-shadow: 0 .3em 0.75em rgba(0,0,0,.25);
 }
 
 nav {
 	display: flex;
 	align-items: center;
-	margin-right: 20px;
+	margin-right: 1.25em;
 	.nav__link {
-		margin: 0px 20px;
+		margin: 0 1.25em;
 		font-family: $ff-secondary;
 		&--resume {
 	    	animation: intro--btn 5s;
@@ -95,40 +103,12 @@ nav {
 		
 	.nav__list {
 		animation: intro--list 6s;
+		color: $colour-font;
 	}
-}
-
-.red {
-	color: red;
-}
-
-.hide {
-	position: relative;
-	left: -9999px;
-	top: -9999px;
-}
-
-.intro {
-	display: grid;
-	grid-template-columns: 1fr 2fr;
-	height: 100vh;
-}
-
-.intro__logo {
-	width: 100%;
-	margin : auto;
-	img {
-		animation: 7s display;
-	animation-fill-mode: forwards;
-	}
-}
-
-.intro__code {
-	margin: auto 0px;
 }
 
 a {
-	color: $colour-secondary;
+	color: $colour-font;
 	text-decoration: none;
 	&:hover >.char{
         color: $colour-accent;
@@ -210,6 +190,204 @@ a {
 	list-style: none;
 }
 
+.hide {
+	position: relative;
+	left: -9999px;
+	top: -9999px;
+}
+
+// ->->-> Intro <-<-<-
+
+.intro {
+	display: grid;
+	grid-template-columns: 1fr 2fr;
+	min-height: 100vh;
+}
+
+.intro__logo {
+	width: 100%;
+	margin : auto;
+	img {
+		animation: 7s display;
+	animation-fill-mode: forwards;
+	}
+	z-index: 1000;
+}
+
+.intro__code {
+	margin: auto 0;
+}
+
+// ->->-> Main <-<-<-
+
+main {
+	width: 100%;
+	max-width: 1600px;
+	padding-top: 8em;
+	margin: 0 auto;
+}
+
+strong {
+  	color: white;
+}
+
+section {
+	padding: 10em 0;
+	max-width: 1000px;
+	margin: 0 auto;
+	position: relative;
+}
+
+.section__title {
+  	margin-bottom: 0.3em;
+}
+
+.section__subtitle {
+  	margin-bottom: 0.5em;
+  	background: $colour-secondary;
+  	color: $colour-accent;
+  	padding: 0.25em 0;
+  	position: relative;
+  	left: -1em;
+  	padding-left: 1em;
+  	padding-right: 1em;
+  /*display: inline-block; trims background on small screens*/
+}
+
+.about-me__img {
+  	min-width: 250px;
+}
+
+@media (min-width: 600px) {
+  	.about-me {
+    	position: relative;
+    	display: grid;
+    	grid-template-areas: 
+    	  "title img"
+    	  "subtitle img"
+    	  "body img";
+    	grid-column-gap: 3em; /*1em gap + 2em to compensate for img moved to the left*/
+  	}
+
+  	/* add these as & children in sass */
+  	.about-me__title {
+    	grid-area: title;
+  	}
+
+  	.about-me__subtitle {
+    	grid-area: subtitle;
+    	grid-column: -1 / 1;
+    	padding-right: calc(250px + 2em); /*put these in variables: pic width and paddings*/
+
+  	}
+
+  	.about-me__body {
+    	grid-area: body;
+    	min-width: 250px;
+
+  	}
+
+  	.about-me__img {
+    	grid-area: img;
+    	position: relative;
+    	right: 2em;
+    	box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
+    	margin-top: 1.5em;
+  	}
+}
+
+@media (min-width: 1200px) {
+  	section:nth-child(odd) {
+    	left: 100px;
+  	}
+
+  	section:nth-child(even) {
+    	right: 100px;
+  	}
+}
+
+@media (min-width: 600px) {
+  	.portfolio__item {
+    	position: relative;
+    	width: 100%;
+    	margin-top: 4em;
+    	display: grid;
+    	grid-column-gap: 1em;
+    	grid-template-columns: repeat(12, 1fr);
+    	grid-template-rows: repeat(2, 1fr);
+    	text-align: right;
+    	align-items: start;
+  	}
+
+  	.portfolio__item__image {
+    	grid-column: 1 / 8;
+    	grid-row: 1 / 3;
+  	}
+
+  	.portfolio__item__image--img {
+    	height: 100%;
+    	object-fit: cover;
+  	}
+
+  /*.portfolio__item__body {
+    display: flex;
+    flex-direction: column;
+    align-items: end; 
+    justify-content: start;
+    text-align: right;
+    height: 80%;
+    grid-column: 6 / 12;
+    grid-row: 1;
+  }*/
+
+  	.portfolio__item__subtitle {
+    	grid-row: 1;
+    	grid-column: 8 /12;
+    	margin: auto 0;
+    	padding-bottom: 0.75em;
+    	border-bottom: 1px solid yellow;
+  	}
+
+  	.portfolio__item__desc {
+    	position: relative;
+    	right: -1em;
+    	background: $colour-secondary;
+    	z-index: 2;
+    	padding: 1.25em;
+    	grid-column: 5 / 12;
+    	grid-row: 2;
+    	box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
+  	}
+}
+
+@media (min-width: 800px) {
+  	.portfolio__item {
+    	margin-top: 2em;
+    	grid-template-rows: repeat(3, 1fr);
+  	}
+
+  	.portfolio__item__image {
+    	grid-row: 1 / 4;
+  	}
+
+  	.portfolio__item__image--img {
+    	min-height: 250px;
+    	height: 100%;
+    	object-fit: cover;
+  	}
+
+  	.portfolio__item__subtitle {
+    	grid-row: 1;
+    	grid-column: 8 /12;
+  	}
+
+  	.portfolio__item__desc {
+    	padding: 1.25em;
+    	grid-column: 6 / 12;
+    	grid-row: 2;
+  	}
+}
+
 
 /* Animation */
 
@@ -230,7 +408,7 @@ a {
 		color: transparent;
 	}
 	50% {
-		color: $colour-secondary;
+		color: $colour-font;
 	}
 }
 
@@ -327,6 +505,7 @@ a {
 		// for responsiveness these values to be calculated based on screen size, with the final value being 80px/default logo width
 		transform: scale(0.13);
 		transform-origin: 0% -32%;
+		opacity: 0.1;
 	}
     100% {transform: scale(0.01)  translate(-11450px, -11550px); opacity: 0;}
 }

@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -9,114 +9,102 @@
     <link rel="stylesheet" href="./css/style.css">
 
     <title>Artur Kasprzak | SDE</title>
-</head>
-<body>
+  </head>
+  <body>
 
     <header class="header" id="navbar">
-        <div class="logo" id="logo--hide">
-          <a href="#home"><img class="logo__img" id="logo__img" src="./public/img/logo.png" alt=""><img class="logo__img--bright" src="./public/img/logo-bright.png" alt=""></a>
-        </div>
-        <button class="nav-toggle" aria-label="toggle navigation">
-          <span class="hamburger"></span>
-        </button>
-        <nav class="nav">
-          <ul class="nav__list">
-            <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
-            <li class="nav__link"> <a href="#work"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
-            <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
-          </ul>
-          <div class="nav__link--resume"> <a class="btn" href="/resume.html">resume</a></div> 
-        </nav>
+      <div class="logo" id="logo--hide">
+        <a href="#home">
+          <img class="logo__img" id="logo__img" src="./public/img/logo.png" alt="">
+          <img class="logo__img--bright" src="./public/img/logo-bright.png" alt="">
+        </a>
+      </div>
+
+      <button class="nav-toggle" aria-label="toggle navigation">
+        <span class="hamburger"></span>
+      </button>
+
+      <nav class="nav">
+        <ul class="nav__list">
+          <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
+          <li class="nav__link"> <a href="#work"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
+          <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
+        </ul>
+        <div class="nav__link--resume"> <a class="btn" href="/resume.html">resume</a></div> 
+      </nav>
     </header>
 
-    <section class="intro" id="home">
+    <div class="intro" id="home">
       <div class="intro__logo">
         <img src="./public/img/logo.png" id="intro__logo" alt="logo-intro">
       </div>
       <div class="intro__code" id="intro__code--anim">
         <span id="terminal">></span><span class="cursor">_</span>
-        <!--
-        <p class="section__subtitle section__subtitle__intro">> I write code!</p>
-        <p class="section__subtitle section__subtitle__intro">>_</p>
-      -->
       </div>
-    </section>
+    </div>
+
     <main class="container">
-        <div class="proj-grid">
-            <section class="proj-prev" onclick="location.href='/project.html'" >
-                <div class="proj-prev__image">
-                        <img src="/public/img/photography_1280w.jpg" srcset="
-                        /public/img/photography_3000w.jpg 3000w,
-                        /public/img/photography_1920w.jpg 1920w,
-                        /public/img/photography_0864w.jpg 864w,
-                        /public/img/photography_0640w.jpg 640w,
-                        /public/img/photography_0640w.jpg 640w,
-                        /public/img/photography_0420w.jpg 420w
-                    " alt="project title goes here" >
-                </div>
-                <h1 class="proj-prev__heading">
-                    Project Title
-                </h1>
-                <p class="proj-prev__byline">
-                    project keywords would go here
-                </p>
-            </section>
-            <section class="proj-prev">
-                <div class="proj-prev__image">
-                        <img src="/public/img/photography_1280w.jpg" srcset="
-                        /public/img/photography_3000w.jpg 3000w,
-                        /public/img/photography_1920w.jpg 1920w,
-                        /public/img/photography_0864w.jpg 864w,
-                        /public/img/photography_0640w.jpg 640w,
-                        /public/img/photography_0640w.jpg 640w,
-                        /public/img/photography_0420w.jpg 420w
-                    " alt="project title goes here" >
-                </div>
-                <h1 class="proj-prev__heading">
-                    Project Title
-                </h1>
-                <p class="proj-prev__byline">
-                    project keywords would go here
-                </p>
-            </section>
-            <section class="proj-prev">
-                    <div class="proj-prev__image">
-                            <img src="/public/img/photography_1280w.jpg" srcset="
-                            /public/img/photography_3000w.jpg 3000w,
-                            /public/img/photography_1920w.jpg 1920w,
-                            /public/img/photography_0864w.jpg 864w,
-                            /public/img/photography_0640w.jpg 640w,
-                            /public/img/photography_0640w.jpg 640w,
-                            /public/img/photography_0420w.jpg 420w
-                        " alt="project title goes here" >
-                    </div>
-                    <h1 class="proj-prev__heading">
-                        Project Title
-                    </h1>
-                    <p class="proj-prev__byline">
-                        project keywords would go here
-                    </p>
-                </section>            <section class="proj-prev">
-                        <div class="proj-prev__image">
-                                <img src="/public/img/photography_1280w.jpg" srcset="
-                                /public/img/photography_3000w.jpg 3000w,
-                                /public/img/photography_1920w.jpg 1920w,
-                                /public/img/photography_0864w.jpg 864w,
-                                /public/img/photography_0640w.jpg 640w,
-                                /public/img/photography_0640w.jpg 640w,
-                                /public/img/photography_0420w.jpg 420w
-                            " alt="project title goes here" >
-                        </div>
-                        <h1 class="proj-prev__heading">
-                            Project Title
-                        </h1>
-                        <p class="proj-prev__byline">
-                            project keywords would go here
-                        </p>
-                    </section>
+      <section class="about-me" id="about">
+        <h1 class="section__title about-me__title">{who I am}</h1>
+        <h3 class="section__subtitle about-me__subtitle">/* software developer based in London */</h3>
+        <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
+        <div class="about-me__body">
+          <p>Hi, I am Artur Kasprzak.</p>
+          <p>I have recently graduated from <a href="www.openclassrooms.com">Open Classrooms</a> as a Web Developer.</p>
+          <p>I build web applications, websites and, when time allows 
+            (<span style="color:red">!</span><span style="color:orange">important</span>), 
+            I compete in programming contests.</p>
+          <p>I code mainly in <strong>Java</strong> and <strong>JavaScript (ES6+)</strong>, but I also enjoy working with Python's Flask and Django.</p>
+          <p>Since I don't have my own style, I use <strong>CSS</strong> and <strong>Sass</strong></p>
+          <p>Last but not least, I love studying and challenging myself.</p>
         </div>
-        
+      </section>
+
+      <section id="projects">
+        <h2 class="section__title">{things I have built}</h2>
+        <h3 class="section__subtitle">/* featured projects */</h3>
+        <div class="portfolio">
+          <div class="portfolio__item">
+            <a href="#" class="portfolio__item__image">
+              <img src="./public/img/project2.jpg" alt="Project 1" class="portfolio__item__image--img">
+            </a>
+            <!-- <div class="portfolio__item__body"> -->
+              <h3 class="portfolio__item__subtitle">name of project 1</h3>
+              <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.</p>
+            <!-- </div> -->
+          </div>
+
+          <div class="portfolio__item">
+            <a href="#" class="portfolio__item__image">
+              <img src="./public/img/project3.jpg" alt="Project 2" class="portfolio__item__image--img">
+            </a>
+            <!-- <div class="portfolio__item__body"> -->
+              <h3 class="portfolio__item__subtitle">name of project 2 name of project 2</h3>
+              <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.</p>
+            <!-- </div> -->
+          </div>
+
+          <div class="portfolio__item">
+            <a href="#" class="portfolio__item__image">
+              <img src="./public/img/project4.jpg" alt="Project 3" class="portfolio__item__image--img">
+            </a>
+            <!-- <div class="portfolio__item__body"> -->
+              <h3 class="portfolio__item__subtitle">name of project 3</h3>
+              <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.  </p>
+            <!-- </div> -->
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h3 class="section__subtitle">What's next?</h3>
+        <h2 class="section__title">Let's talk!</h2>
+      </section>
     </main>
+
+    <footer>
+    </footer>
+
     <script>   
       let i = 0;
       // boolean variable to flag timeout before moving cursor to next line - personal pref
@@ -222,11 +210,8 @@
         document.removeEventListener("scroll", clearTerminal);
         let txt = terminal.innerHTML;
         let i = txt.length - 1;
-        let running;
 
-        if (running) return;
-
-        running = setInterval(function() {
+        setInterval(function() {
           if (i > 0) {
             // prevent scrolling until animation is finished - for reusability, this should not be part of this function
             window.scrollTo(0, 0);
@@ -258,6 +243,7 @@
             }
             txt = txt.substring(0, i);
             i--;
+            if (i < 1) txt = '>';
             terminal.innerHTML = txt;
           }
         }, 50);
@@ -290,7 +276,7 @@
 
       window.onscroll = function() {navbarToggle()};
       let prevPos = 0;
-      let scrollingDown = false;
+
 
       function navbarToggle() {
         // document.body.scrollTop - Safari
@@ -299,29 +285,52 @@
 
         let curPos = document.body.scrollTop || document.documentElement.scrollTop;
 
+
         // wait for scroll to 'settle'
         if (Math.abs(curPos - prevPos) > 30) {
-          let diff = prevPos - curPos;
-
-          // scroll down / navbar up
-          if (diff < 0) {
-            if (!scrollingDown) {
-              document.getElementById("navbar").style.top = "-15px";
-              scrollingDown = true;
-            }
-            else document.getElementById("navbar").style.top = "-65px";
+          // first time
+          if (prevPos < 10) {
+            document.getElementById("navbar").classList.add("header--lifted");
           }
-          // else scroll up / display navbar
+          // scrolled back to top
+          else if (curPos < 10) {
+            document.getElementById("navbar").classList.remove("header--lifted");
+          }
           else {
-            scrollingDown = false;
-            document.getElementById("navbar").style.top = "0px";
+            if (curPos > prevPos) {
+              document.getElementById("navbar").style.top = "-85px";
+            }
+            else 
+              document.getElementById("navbar").style.top = "0px";
           }
-
+          // update last position
           prevPos = curPos;
+          console.log(curPos);
         }
+
+
+        // let scrollingDown = false;
+        // // wait for scroll to 'settle'
+        // if (Math.abs(curPos - prevPos) > 30) {
+        //   let diff = prevPos - curPos;
+
+        //   // scroll down / navbar up
+        //   if (diff < 0) {
+        //     if (!scrollingDown) {
+        //       document.getElementById("navbar").style.top = "-15px";
+        //       scrollingDown = true;
+        //     }
+        //     else document.getElementById("navbar").style.top = "-65px";
+        //   }
+        //   // else scroll up / display navbar
+        //   else {
+        //     scrollingDown = false;
+        //     document.getElementById("navbar").style.top = "0px";
+        //   }
+
+        //   prevPos = curPos;
+        // }
       }
-
-
     </script>
   </body>
 </html>
