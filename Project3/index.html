@@ -14,7 +14,7 @@
 
     <header class="header" id="navbar">
       <div class="logo" id="logo--hide">
-        <a href="#home">
+        <a href="https://puteshestvennik2019.github.io/Open-Classrooms/Project3/index.html">
           <img class="logo__img" id="logo__img" src="./public/img/logo.png" alt="">
           <img class="logo__img--bright" src="./public/img/logo-bright.png" alt="">
         </a>
@@ -44,68 +44,83 @@
     </div>
 
     <main class="container">
-      <section class="about-me" id="about">
-        <h1 class="section__title about-me__title">{who I am}</h1>
-        <h3 class="section__subtitle about-me__subtitle">/* software developer based in London */</h3>
-        <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
-        <div class="about-me__body">
-          <p>Hi, I am Artur Kasprzak.</p>
-          <p>I have recently graduated from <a href="www.openclassrooms.com">Open Classrooms</a> as a Web Developer.</p>
-          <p>I build web applications, websites and, when time allows 
-            (<span style="color:red">!</span><span style="color:orange">important</span>), 
-            I compete in programming contests.</p>
-          <p>I code mainly in <strong>Java</strong> and <strong>JavaScript (ES6+)</strong>, but I also enjoy working with Python's Flask and Django.</p>
-          <p>Since I don't have my own style, I use <strong>CSS</strong> and <strong>Sass</strong></p>
-          <p>Last but not least, I love studying and challenging myself.</p>
+      <div class="main">
+        <section class="about-me" id="about">
+          <h2 class="section__title about-me__title">who I am</h2>
+          <h3 class="section__subtitle about-me__subtitle">software developer based in London</h3>
+          <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
+          <div class="about-me__body">
+            <p>Hi, I am Artur Kasprzak.</p>
+            <p>I have recently graduated from <a href="https://www.openclassrooms.com"><strong>Open Classrooms</strong></a> as a Web Developer.</p>
+            <p>I build web applications, websites and, when time allows 
+              (<span style="color:red">!</span><span style="color:orange">important</span>), 
+              I compete in programming contests.</p>
+            <p>I code mainly in <strong>Java</strong> and <strong>JavaScript (ES6+)</strong>, but I also enjoy working with Python's Flask and Django.</p>
+            <p>Since I don't have my own style, I use <strong>CSS</strong> and <strong>Sass</strong></p>
+            <p>Last but not least, I love studying and challenging myself.</p>
+          </div>
+        </section>
+
+        <section id="projects">
+          <h2 class="section__title">things I have built</h2>
+          <h3 class="section__subtitle">featured projects</h3>
+          <div class="portfolio">
+            <div class="portfolio__item">
+              <a href="#" class="portfolio__item__image">
+                <img src="./public/img/project2.jpg" alt="Project 1" class="portfolio__item__image--img">
+              </a>
+              <!-- <div class="portfolio__item__body"> -->
+                <h3 class="portfolio__item__subtitle">name of project 1</h3>
+                <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.</p>
+              <!-- </div> -->
+            </div>
+
+            <div class="portfolio__item">
+              <a href="#" class="portfolio__item__image">
+                <img src="./public/img/project3.jpg" alt="Project 2" class="portfolio__item__image--img">
+              </a>
+              <!-- <div class="portfolio__item__body"> -->
+                <h3 class="portfolio__item__subtitle">name of project 2 name of project 2</h3>
+                <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.</p>
+              <!-- </div> -->
+            </div>
+
+            <div class="portfolio__item">
+              <a href="#" class="portfolio__item__image">
+                <img src="./public/img/project4.jpg" alt="Project 3" class="portfolio__item__image--img">
+              </a>
+              <!-- <div class="portfolio__item__body"> -->
+                <h3 class="portfolio__item__subtitle">name of project 3</h3>
+                <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.  </p>
+              <!-- </div> -->
+            </div>
+          </div>
+        </section>
+
+        <section id="contact">
+          <h3 class="section__subtitle">What's next?</h3>
+          <h2 class="section__title">Let's talk!</h2>
+        </section>
+      </div>
+
+      <div class="sidebar">
+        <div class="social-media">
+          <i class="fa fa-twitter fa-2x"></i>
+          <i class="fa fa-github fa-2x"></i>
+          <i class="fa fa-linkedin fa-2x"></i>
         </div>
-      </section>
-
-      <section id="projects">
-        <h2 class="section__title">{things I have built}</h2>
-        <h3 class="section__subtitle">/* featured projects */</h3>
-        <div class="portfolio">
-          <div class="portfolio__item">
-            <a href="#" class="portfolio__item__image">
-              <img src="./public/img/project2.jpg" alt="Project 1" class="portfolio__item__image--img">
-            </a>
-            <!-- <div class="portfolio__item__body"> -->
-              <h3 class="portfolio__item__subtitle">name of project 1</h3>
-              <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.</p>
-            <!-- </div> -->
-          </div>
-
-          <div class="portfolio__item">
-            <a href="#" class="portfolio__item__image">
-              <img src="./public/img/project3.jpg" alt="Project 2" class="portfolio__item__image--img">
-            </a>
-            <!-- <div class="portfolio__item__body"> -->
-              <h3 class="portfolio__item__subtitle">name of project 2 name of project 2</h3>
-              <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.</p>
-            <!-- </div> -->
-          </div>
-
-          <div class="portfolio__item">
-            <a href="#" class="portfolio__item__image">
-              <img src="./public/img/project4.jpg" alt="Project 3" class="portfolio__item__image--img">
-            </a>
-            <!-- <div class="portfolio__item__body"> -->
-              <h3 class="portfolio__item__subtitle">name of project 3</h3>
-              <p class="portfolio__item__desc">This will be a brief description of the project as well as my motivation to build it. I will include things I have used and what I have learned.  </p>
-            <!-- </div> -->
-          </div>
-        </div>
-      </section>
-
-      <section id="contact">
-        <h3 class="section__subtitle">What's next?</h3>
-        <h2 class="section__title">Let's talk!</h2>
-      </section>
+      </div>
     </main>
 
     <footer>
     </footer>
 
     <script>   
+      // when hitting F5, scroll up
+      window.onbeforeunload = function () {
+        window.scrollTo(0, 0);
+      }
+
       let i = 0;
       // boolean variable to flag timeout before moving cursor to next line - personal pref
       let flag = false;
@@ -215,10 +230,7 @@
           if (i > 0) {
             // prevent scrolling until animation is finished - for reusability, this should not be part of this function
             window.scrollTo(0, 0);
-            console.log(txt.charAt(i));
-            console.log(i);
             if (txt.charAt(i) === ';') {
-              console.log(';');
               let pointer = i - 1;
               while (pointer >= 0 && txt.charAt(pointer) != '&') {
                 pointer--;
@@ -251,7 +263,6 @@
 
       // returns first occurance of substring in txt if last = false or last occurance otherwise
       function findMatch(txt, substring, last = false) {
-        console.log("function called");
         let res;
         let index = txt.indexOf(substring);
         if (!last || index < 0) return index;
@@ -276,6 +287,7 @@
 
       window.onscroll = function() {navbarToggle()};
       let prevPos = 0;
+      let scrollVal = 30;
 
 
       function navbarToggle() {
@@ -284,24 +296,37 @@
         // let curPos = window.pageYOffset;
 
         let curPos = document.body.scrollTop || document.documentElement.scrollTop;
+        let navbar = document.getElementById("navbar");
 
 
         // wait for scroll to 'settle'
-        if (Math.abs(curPos - prevPos) > 30) {
+        if (Math.abs(curPos - prevPos) > scrollVal) {
           // first time
-          if (prevPos < 10) {
-            document.getElementById("navbar").classList.add("header--lifted");
+          if (prevPos <= scrollVal) {
+            // move headear up 5px at 200ms transition, add box-shadow
+            navbar.style.transition = "top 200ms"; // 1s is too much to move 5px - perhaps lines below could be more concise?
+            // navbar.style.transition = "top 1ms" could be added in the last else, but then this line would be executed every time scroll is triggered
+            // event listener adds 'complexity' but the css property in question gets updated when needed only
+            // However, for some reason, the listener prevents smooth transition from the initial position when fast scrolling down
+            // navbar.addEventListener("transitionend", () => {navbar.removeEventListener("transitionend", () => {}); navbar.style.transition = "top 1s";});
+            // navbar.ontransitionend = () => {navbar.style.transition = "top 1s";}; 
+            navbar.style.top = "-5px";
+            navbar.classList.add("header--lifted");
           }
           // scrolled back to top
-          else if (curPos < 10) {
-            document.getElementById("navbar").classList.remove("header--lifted");
+          else if (curPos <= scrollVal) {
+            // remove box-shadow and drop header to original position
+            // navbar.style.transition = "top 200ms";
+            navbar.classList.remove("header--lifted");
+            navbar.style.top = "0px";
           }
           else {
+            navbar.style.transition = "top 1s";
             if (curPos > prevPos) {
-              document.getElementById("navbar").style.top = "-85px";
+              navbar.style.top = "-85px";
             }
             else 
-              document.getElementById("navbar").style.top = "0px";
+              navbar.style.top = "0px";
           }
           // update last position
           prevPos = curPos;
