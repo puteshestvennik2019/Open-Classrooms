@@ -27,7 +27,7 @@
       <nav class="nav">
         <ul class="nav__list">
           <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
-          <li class="nav__link"> <a href="#work"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
+          <li class="nav__link"> <a href="#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
         </ul>
         <div class="nav__link--resume"> <a class="btn" href="/resume.html">resume</a></div> 
@@ -39,14 +39,14 @@
         <img src="./public/img/logo.png" id="intro__logo" alt="logo-intro">
       </div>
       <div class="intro__code" id="intro__code--anim">
-        <span id="terminal">></span><span class="cursor">_</span>
+        <span id="terminal">></span><span class="cursor" id="cursor">_</span>
       </div>
     </div>
 
     <main class="container">
       <div class="main">
         <section class="about-me" id="about">
-          <h2 class="section__title about-me__title">who I am</h2>
+          <h2 class="section__title about-me__title" id="about-title">who I am</h2>
           <h3 class="section__subtitle about-me__subtitle">software developer based in London</h3>
           <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
           <div class="about-me__body">
@@ -61,7 +61,7 @@
           </div>
         </section>
 
-        <section id="projects">
+        <section class="projects" id="projects">
           <h2 class="section__title">things I have built</h2>
           <h3 class="section__subtitle">featured projects</h3>
           <div class="portfolio">
@@ -105,9 +105,9 @@
 
       <div class="sidebar">
         <div class="social-media">
-          <i class="fa fa-twitter fa-2x"></i>
-          <i class="fa fa-github fa-2x"></i>
-          <i class="fa fa-linkedin fa-2x"></i>
+          <a href="https://twitter.com"><i class="fa fa-twitter fa-2x"></i></a>
+          <a href="https://twitter.com"><i class="fa fa-github fa-2x"></i></a>
+          <a href="https://twitter.com"><i class="fa fa-linkedin fa-2x"></i></a>
         </div>
       </div>
     </main>
@@ -122,7 +122,7 @@
       }
 
       let i = 0;
-      // boolean variable to flag timeout before moving cursor to next line - personal pref
+      // boolean variable to flag timeout before moving cursor to next line
       let flag = false;
       const pauseAtEnd = pauseAtStart = 2000;
       const writtingSpeed = 30;
@@ -187,6 +187,15 @@
         window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
       }
 
+      /*
+      ........................................................................
+      The code below is a disgrace but
+      JS was not part of this exercise so
+      I have to leave it as it is...
+      typeWriter is not reusable, it should not be invoking another function, etc...
+      It's probably easier to start over with clear OOD
+      ........................................................................
+      */
       function typeWriter() {
         if (flag) {
           flag = false;
@@ -225,6 +234,9 @@
         document.removeEventListener("scroll", clearTerminal);
         let txt = terminal.innerHTML;
         let i = txt.length - 1;
+        let delay = 50;
+
+        hideTerminal(i * delay - 1000);
 
         setInterval(function() {
           if (i > 0) {
@@ -255,10 +267,49 @@
             }
             txt = txt.substring(0, i);
             i--;
-            if (i < 1) txt = '>';
+            if (i < 1) {
+              txt = '>';
+              hideHome();
+            }
             terminal.innerHTML = txt;
           }
-        }, 50);
+        }, delay);
+      }
+
+
+      // change opacity of #home to 0
+      function hideTerminal(duration) {
+        let home = document.getElementById("home");
+        let styleString = "opacity " + duration + "ms";
+
+        // terminal.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
+        // terminal.style.opacity = "0";
+        // cursor.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
+        // cursor.style.opacity = "0";
+
+        home.style.transition = styleString;
+        home.style.opacity = "0";
+        // cursor.style.transition = styleString;
+        // cursor.style.opacity = "0";
+      }
+
+      // hides #intro, animates #about and displays logo
+      function hideHome() {
+        let stringToPrint = document.getElementById("about-title").innerHTML;
+        console.log(stringToPrint);
+        document.getElementById("home").style.display = "none";
+        let about = document.getElementById("about");
+
+        about.style.transition = "transform 0.8s, opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1)";
+        about.style.transform = "matrix(1,0,0,1,0,-200)";
+        about.style.opacity = "1";
+
+        // display logo
+        let logoSmall = document.getElementById("logo__img");
+        logoSmall.style.transition = "opacity 1s";
+        logoSmall.style.opacity = "1";
+        // when DOM was loded, logo--hide (div with two logos) was moved off the screen using the class .hide
+        document.getElementById("logo--hide").classList.remove("hide");
       }
 
       // returns first occurance of substring in txt if last = false or last occurance otherwise
@@ -273,6 +324,10 @@
         return res;
       }
 
+      /*
+      ============================================================================
+      This was used with CSS animation which is now replaced by JS triggered event
+      ============================================================================
 
       let logoPic = document.getElementById("intro__logo");
       logoPic.addEventListener("animationend", switchLogos);
@@ -283,20 +338,61 @@
           document.getElementById("logo--hide").classList.remove("hide");
           logoPic.removeEventListener("animationend", switchLogos);
       }
+      */
 
+      /*
+      Another use of global variables
+      !!!!!!!!!!!
+      */
 
-      window.onscroll = function() {navbarToggle()};
+      let navbar = document.getElementById("navbar");
+      let windowHeight = window.innerHeight;   
+      let projects = document.getElementById("projects");
+      let projectsOffset = projects.offsetTop;
+
+      let transitionInitialized = false;
+      let click = false;
+      let done = false;
+
       let prevPos = 0;
       let scrollVal = 30;
 
+      window.onscroll = function() {
+        let curPos = document.body.scrollTop || document.documentElement.scrollTop;
 
-      function navbarToggle() {
+        // do this only 'once'
+        if (!done) {
+
+          // not sure about the values, figured out this one by trial and error
+          // if scroll value is large enough, it was caused by a mouse click
+          if (curPos - prevPos > 80) click = true;
+
+          // curPos + windowHeight = scroll amount at the bottom of the screen  
+          if (curPos + windowHeight >= projectsOffset && !transitionInitialized) { 
+            transitionInitialized = true;
+
+            // delay transition so that it is visible
+            windowHeight -= 500;
+
+          }
+          if (transitionInitialized && curPos + windowHeight >= projectsOffset) {
+
+            // this is part of scroll transition, do not use otherwise
+            if (!click) projects.style.top = "200px";
+            
+            done = true;
+            transitionFunction(click);
+          }
+        }
+
+        navbarToggle(curPos, navbar);
+      }
+
+
+      function navbarToggle(curPos) {
         // document.body.scrollTop - Safari
         // document.documentElement.scrollTop - the rest
         // let curPos = window.pageYOffset;
-
-        let curPos = document.body.scrollTop || document.documentElement.scrollTop;
-        let navbar = document.getElementById("navbar");
 
 
         // wait for scroll to 'settle'
@@ -330,7 +426,6 @@
           }
           // update last position
           prevPos = curPos;
-          console.log(curPos);
         }
 
 
@@ -355,6 +450,20 @@
 
         //   prevPos = curPos;
         // }
+      }
+
+
+      function transitionFunction(click) {
+        if (click) {
+          projects.style.transition = "opacity 2s cubic-bezier(0.645, 0.045, 0.355, 1)";
+          projects.style.opacity = "1";
+        }
+        else {
+          projects.style.transition = "transform 1s, opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
+          projects.style.transform = "matrix(1,0,0,1,0,-200)";
+          projects.style.opacity = "1";
+          //main.style.transform = "matrix(1,0,0,1,0,-800)";
+        }
       }
     </script>
   </body>
