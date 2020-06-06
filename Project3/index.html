@@ -25,12 +25,12 @@
       </button>
 
       <nav class="nav">
-        <ul class="nav__list">
+        <ul class="nav__list" id="nav-list">
           <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
         </ul>
-        <div class="nav__link--resume"> <a class="btn" href="/resume.html">resume</a></div> 
+        <div class="nav__link--resume" id="nav-list-resume"> <a class="btn" href="/resume.html">resume</a></div> 
       </nav>
     </header>
 
@@ -46,7 +46,7 @@
     <main class="container">
       <div class="main">
         <section class="about-me" id="about">
-          <h2 class="section__title about-me__title" id="about-title">who I am</h2>
+          <h2 class="section__title about-me__title" id="about-title">(who) I am</h2>
           <h3 class="section__subtitle about-me__subtitle">software developer based in London</h3>
           <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
           <div class="about-me__body">
@@ -62,7 +62,7 @@
         </section>
 
         <section class="projects" id="projects">
-          <h2 class="section__title">things I have built</h2>
+          <h2 class="section__title">(what) I have built</h2>
           <h3 class="section__subtitle">featured projects</h3>
           <div class="portfolio">
             <div class="portfolio__item">
@@ -98,8 +98,8 @@
         </section>
 
         <section id="contact">
-          <h3 class="section__subtitle">What's next?</h3>
-          <h2 class="section__title">Let's talk!</h2>
+          <h2 class="section__title">(when) it's time to talk</h2>
+          <h3 class="section__subtitle">Let's work together!</h3>
         </section>
       </div>
 
@@ -222,16 +222,33 @@
           // enable scroll and remove listener
           //document.body.style.overflow = "";
           document.removeEventListener('DOMContentLoaded', typeWriter);
+          
           // add listener for second part of this animation
-          document.addEventListener("scroll", clearTerminal);
+          document.addEventListener("scroll", endIntro);
           enableScroll();
         }
         i++;
       }
+      function endIntro() {
+        document.removeEventListener("scroll", endIntro);
 
+        let resumeBtn = document.getElementById("nav-list-resume");
+        let navList = document.getElementById("nav-list");
+
+        // wipe the screen
+        clearTerminal();
+
+        // add nav transition 
+        navList.style.transition = "opacity 3s, transform 1.5s";
+        navList.style.opacity = "1";
+        navList.style.transform = "translate(0%)";
+
+        resumeBtn.style.transform = "translate(0%)";
+        resumeBtn.style.transition = "opacity 1s ease-in";
+        resumeBtn.style.opacity = "1";
+      }
       
       function clearTerminal() {
-        document.removeEventListener("scroll", clearTerminal);
         let txt = terminal.innerHTML;
         let i = txt.length - 1;
         let delay = 50;
