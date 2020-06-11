@@ -21,10 +21,10 @@
 */
 
 $colour-primary: #0A1A30;
-$colour-secondary: #1c3557;
-$colour-font: #dddddd;
-$colour-accent: #fcba03;
-$colour-white: #fff;
+$colour-secondary: #1C3557;
+$colour-font: #DDDDDD;
+$colour-accent: #FCDA03;
+$colour-white: #FFF;
 $colour-invalid: #DB464B;
 
 $ff-primary: 'Roboto', sans-serif;
@@ -34,8 +34,6 @@ $fs-h1: 3rem;
 $fs-h2: 2.25rem;
 $fs-h3: 1.5rem;
 $fs-rest: 1rem;
-
-/* add media variables */
 
 *, *::before, *::after {box-sizing: border-box;}
 
@@ -84,47 +82,50 @@ strong {
 /* Sections and elements */
 
 // ->->-> Header <-<-<-
-
-header {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  // hide / display animation
-  transition: top 1s;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+@media (min-width: 800px) {
+  header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    // hide / display animation
+    transition: top 1s;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     z-index: 100;
     background:  $colour-primary;
+  }
+
+  .header--lifted {
+      box-shadow: 0 .3em 0.75em rgba(0,0,0,.25);
+  }
+
+  .header--lifted--transition {
+      box-shadow: 0 .3em 0.75em rgba(0,0,0,.25);
+      transition: box-shadow 400ms;
+  }
 }
 
-.header--lifted {
-    box-shadow: 0 .3em 0.75em rgba(0,0,0,.25);
-}
-
-.header--lifted--transition {
-    box-shadow: 0 .3em 0.75em rgba(0,0,0,.25);
-    transition: box-shadow 400ms;
-}
-
-nav {
-  display: flex;
-  align-items: center;
-  margin-right: 1.25em;
-  .nav__link {
-    margin: 0 1.25em;
-    font-family: $ff-secondary;
-    &--resume {
+@media (min-width: 800px) {
+  nav {
+    display: flex;
+    align-items: center;
+    margin-right: 1.25em;
+    .nav__link {
+      margin: 0 1.25em;
+      font-family: $ff-secondary;
+      &--resume {
+        opacity: 0;
+        transform: translate(120%);
+      }
+    }
+      
+    .nav__list {
+      color: $colour-font;
       opacity: 0;
       transform: translate(120%);
     }
-  }
-    
-  .nav__list {
-    color: $colour-font;
-    opacity: 0;
-    transform: translate(120%);
   }
 }
 
@@ -138,7 +139,7 @@ a {
 
 // brackets around nav list items, which highlight when hovered over
 .char {
-    font-weight: 900;
+  font-weight: 900;
   transition: color 250ms font 250ms;
 }
 
@@ -164,12 +165,35 @@ a {
 }
 
 // highlights when hovered over - only display on large screens
-@media (min-width: 800px) {
-  .logo__img {
-    &:hover + .logo__img--bright {
-      opacity: 1;
+@media (max-width: 799px) {
+  .logo__img,
+  .logo__img--bright,
+  .char {
+    display: none;
+  }
+  .nav {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    z-index: 9;
+    background: $colour-primary;
+    text-align: center;
+    transform: translate(100%);
+    &__list {
+      height: 60%;
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-evenly;
+      padding-left: 0;
     }
-    }
+  }
+}
+
+.logo__img {
+  &:hover + .logo__img--bright {
+    opacity: 1;
+  }
 }
 
 .btn {
@@ -178,37 +202,52 @@ a {
   padding: 9px 15px;
   border: solid 2px $colour-accent;
   border-radius: 4px;     
-    position: relative;    
-    z-index: 1;
+  position: relative;    
+  z-index: 1;
 
-    &:hover {
-          transform: scale(1.05);
-        &::after {
-          opacity: 1; 
-        }
-    }
+  &:hover {
+    //transform: scale(1.05);
+    transition: /*transform 400ms,*/ opacity 300ms;
     &::after {
-      content: "";
-        position: absolute;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        background: lighten($colour-primary, 10);
-        opacity: 0;
-        z-index: -1;
-        transition: transform 800ms, opacity 300ms;
+      opacity: 1; 
     }
-
+  }
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background: lighten($colour-primary, 10);
+    opacity: 0;
+    z-index: -1;
+  }
 }
 
+@media (min-width: 800px) {
+  .nav-toggle {
+    display: none;
+  }
+}
 .nav-toggle {
-  display: none;
+  height: 2em;
+  position: fixed;
+  right: 10px;
+  top: 25px;
+  background: $colour-primary;
+  border: none;
+  cursor: pointer;
+  z-index: 10;
+  &:focus + .nav {
+    transform: translate(-10%);
+    transition: transform 2s;
+  }
 }
 
 .nav__list {
-  display: flex;
   list-style: none;
+  display: flex;
 }
 
 .hide {
@@ -217,12 +256,43 @@ a {
   top: -9999px;
 }
 
+@media (max-width: 799px) {
+  .hamburger,
+  .hamburger::before, 
+  .hamburger::after {
+    background: $colour-font;
+    width: 2em;
+    height: 3px;
+    border-radius: 3em;
+    z-index: 10;
+  }
+  .hamburger {
+    position: relative;
+    display: block;
+    &::before, 
+    &::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+    }
+    &::before {top: 8px;} 
+    &::after {bottom: 8px;}
+  }
+}
+
 // ->->-> Intro <-<-<-
 
 .intro {
   display: grid;
   grid-template-columns: 1fr 2fr;
   min-height: 100vh;
+}
+
+@media (max-width: 799px) {
+  .intro {
+    display: none;
+  }
 }
 
 .intro__logo {
@@ -247,6 +317,7 @@ main {
   display: flex;
 }
   
+// sidebar only visible on screens over 800px
 .social-media {
   display: none;
 }
@@ -269,6 +340,10 @@ main {
   .main {
     padding: 0 1em; 
   }
+
+  main {
+    padding: 0 1em;
+  }
 }
 
 @media (min-width: 801px) {
@@ -280,12 +355,14 @@ main {
     display: flex;
     flex-direction: column;
 
-    .fa {
-      margin: 0.3em 0;
-      transition: all 500ms;
+    .fa--a {
+      padding: 0.5em 0;
+      transition: all 200ms;
       &:hover {
-        scale: 1.05;
+        //transform: scale(1.05);
+        transform: matrix(1,0,0,1,-1,-3);
         color: $colour-accent;
+        text-shadow: 2px 2px black;
       }
     }
   }
@@ -320,6 +397,8 @@ section {
   /*display: inline-block; trims background on small screens*/
 }
 
+// ->->-> ABOUT <-<-<-
+
 .about-me__body {
   padding-top: 1em;
 }
@@ -339,38 +418,32 @@ section {
         "body img";
       grid-column-gap: 6em; /*4em gap + 2em to compensate for img moved to the left*/
 
-      // properties needed for transition
-      top: 200px;
-      opacity: 0;
-      transform: scale(0.5);
-    }
+      &__title {
+        grid-area: title;
+      }
 
-    /* add these as & children in sass */
-    .about-me__title {
-      grid-area: title;
-    }
+      &__subtitle {
+        grid-area: subtitle;
+        grid-column: -1 / 1;
+        padding-right: calc(250px + 2em); /*put these in variables: pic width and paddings*/
+      }
 
-    .about-me__subtitle {
-      grid-area: subtitle;
-      grid-column: -1 / 1;
-      padding-right: calc(250px + 2em); /*put these in variables: pic width and paddings*/
+      &_body {
+        grid-area: body;
+        min-width: 250px;
+        padding-top: 1em;
 
-    }
+      }
 
-    .about-me__body {
-      grid-area: body;
-      min-width: 250px;
-      padding-top: 1em;
+      &__img {
+        min-width: 250px;
+        grid-area: img;
+        position: relative;
+        right: 2em;
+        box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
+        margin-top: 1.5em;
+      }
 
-    }
-
-    .about-me__img {
-      min-width: 250px;
-      grid-area: img;
-      position: relative;
-      right: 2em;
-      box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
-      margin-top: 1.5em;
     }
 }
 
@@ -388,6 +461,8 @@ section {
     }
 }
 
+// ->->-> PORTFOLIO <-<-<-
+
 .portfolio__item {
   position: relative;
   width: 100%;
@@ -402,16 +477,35 @@ section {
       grid-template-rows: repeat(2, 1fr);
       text-align: right;
       align-items: start;
-    }
 
-    .portfolio__item__image {
-      grid-column: 1 / 8;
-      grid-row: 1 / 3;
-    }
+      &__image {
+        grid-column: 1 / 8;
+        grid-row: 1 / 3;
+      }
 
-    .portfolio__item__image--img {
-      height: 100%;
-      object-fit: cover;
+      &__image--img {
+        height: 100%;
+        object-fit: cover;
+      }
+
+      &__subtitle {
+        grid-row: 1;
+        grid-column: 8 /12;
+        margin: auto 0;
+        padding-bottom: 0.75em;
+        border-bottom: 1px solid yellow;
+      }
+
+      &__desc {
+        position: relative;
+        right: -1em;
+        background: $colour-secondary;
+        z-index: 2;
+        padding: 1.25em;
+        grid-column: 5 / 12;
+        grid-row: 2;
+        box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
+      }
     }
 
   /*.portfolio__item__body {
@@ -424,28 +518,9 @@ section {
     grid-column: 6 / 12;
     grid-row: 1;
   }*/
-
-    .portfolio__item__subtitle {
-      grid-row: 1;
-      grid-column: 8 /12;
-      margin: auto 0;
-      padding-bottom: 0.75em;
-      border-bottom: 1px solid yellow;
-    }
-
-    .portfolio__item__desc {
-      position: relative;
-      right: -1em;
-      background: $colour-secondary;
-      z-index: 2;
-      padding: 1.25em;
-      grid-column: 5 / 12;
-      grid-row: 2;
-      box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
-    }
 }
 
-@media (min-width: 800px) {
+@media (min-width: 900px) {
     .projects {
       position: relative;
       opacity: 0;
@@ -454,28 +529,72 @@ section {
     .portfolio__item {
       margin-top: 2em;
       grid-template-rows: repeat(3, 1fr);
-    }
 
-    .portfolio__item__image {
-      grid-row: 1 / 4;
-    }
+      &__image {
+        grid-row: 1 / 4;
+      }
 
-    .portfolio__item__image--img {
-      min-height: 250px;
-      height: 100%;
-      object-fit: cover;
-    }
+      &__image--img {
+        min-height: 250px;
+        height: 100%;
+        object-fit: cover;
+      }
 
-    .portfolio__item__subtitle {
-      grid-row: 1;
-      grid-column: 8 /12;
-    }
+      &__subtitle {
+        grid-row: 1;
+        grid-column: 8 /12;
+      }
 
-    .portfolio__item__desc {
-      padding: 1.25em;
-      grid-column: 6 / 12;
-      grid-row: 2;
+      &__desc {
+        padding: 1.25em;
+        grid-column: 6 / 12;
+        grid-row: 2;
+      }
     }
+}
+
+// properties needed for transition - many use javascript - don't display on small screens
+@media (min-width: 800px) {
+  .about-me {
+    top: 200px;
+    opacity: 0;
+    transform: scale(0.5);
+  }
+}
+
+@media (max-width: 599px) {
+  body {
+    font-size: 120%;
+  }
+  .section__subtitle {
+    margin: 1.25em 0;
+  }
+  .portfolio__item {
+    padding: 1.5em 0;
+    &__subtitle {
+      margin: .5em 0;
+    }
+  }
+}
+
+footer {
+  height: 80px;
+  display: flex;
+  flex-direction: column;
+}
+
+.footer__social-media {
+  width: 200px;
+  margin: auto ;
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+}
+
+.contact--btn {
+  cursor: pointer;
+  padding: .5em 1em;
+  vertical-align: center;
 }
 
 
@@ -540,52 +659,7 @@ section {
 }
 */
 
-
-/*
-This was the original animation
-*/
-
-// @keyframes display {
-//   0% {
-//     opacity: 0;
-//   }
-//   8% {
-//     opacity: 0;
-//   }
-//   13% {
-//     transform: scale(0.6);
-//   }
-//   15% {
-//     transform: scale(1.2);
-//   }
-//   20% {
-//     transform: scale(1);
-//     opacity: 1;
-//   }
-//   80% {
-//     transform: scale(1);
-//     transform: translate(0, 0);
-//     opacity: 1;
-//   }
-//   83% {
-//     // for responsiveness these values value to be calculated based on screen size, with the final value being 80px/default logo width
-//     // try viewport or screen.width 
-//     transform: scale(0.3) ease-out;
-//     transform-origin: 10% -10%;
-//   }
-//   99% {
-//     // for responsiveness these values to be calculated based on screen size, with the final value being 80px/default logo width
-//     transform: scale(0.13);
-//     transform-origin: 0% -32%;
-//     opacity: 0.1;
-//   }
-//     100% {transform: scale(0.01)  translate(-11450px, -11550px); opacity: 0;}
-// }
-
-/* 
-Same as above but this last part is triggered by JS
-*/
-
+// Intro: brings up large logo;
 @keyframes display {
   0% {
     opacity: 0;
@@ -604,25 +678,3 @@ Same as above but this last part is triggered by JS
     opacity: 1;
   }
 }
-
-/*
-  80% {
-    transform: scale(1);
-    transform: translate(0, 0);
-    opacity: 1;
-  }
-  83% {
-    // for responsiveness these values value to be calculated based on screen size, with the final value being 80px/default logo width
-    // try viewport or screen.width 
-    transform: scale(0.3) ease-out;
-    transform-origin: 10% -10%;
-  }
-  99% {
-    // for responsiveness these values to be calculated based on screen size, with the final value being 80px/default logo width
-    transform: scale(0.13);
-    transform-origin: 0% -32%;
-    opacity: 0.1;
-  }
-    100% {transform: scale(0.01)  translate(-11450px, -11550px); opacity: 0;}
-}
-*/

@@ -46,7 +46,7 @@
     <main class="container">
       <div class="main">
         <section class="about-me" id="about">
-          <h2 class="section__title about-me__title" id="about-title">(who) I am</h2>
+          <h2 class="section__title about-me__title" id="about-title">who I am</h2>
           <h3 class="section__subtitle about-me__subtitle">software developer based in London</h3>
           <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
           <div class="about-me__body">
@@ -62,7 +62,7 @@
         </section>
 
         <section class="projects" id="projects">
-          <h2 class="section__title">(what) I have built</h2>
+          <h2 class="section__title">things I have built</h2>
           <h3 class="section__subtitle">featured projects</h3>
           <div class="portfolio">
             <div class="portfolio__item">
@@ -98,388 +98,402 @@
         </section>
 
         <section id="contact">
-          <h2 class="section__title">(when) it's time to talk</h2>
-          <h3 class="section__subtitle">Let's work together!</h3>
+          <h2 class="section__title">it's time to talk</h2>
+          <h3 class="section__subtitle">let's work together!</h3>
+          <h3 class="contact--btn btn"> <a mailto="">get in touch</a></h3>
+         <!--  <button class="contact--btn btn">get in touch</button> -->
         </section>
       </div>
 
       <div class="sidebar">
         <div class="social-media">
-          <a href="https://twitter.com"><i class="fa fa-twitter fa-2x"></i></a>
-          <a href="https://twitter.com"><i class="fa fa-github fa-2x"></i></a>
-          <a href="https://twitter.com"><i class="fa fa-linkedin fa-2x"></i></a>
+          <a href="https://twitter.com" class="fa--a"><i class="fa fa-twitter fa-2x"></i></a>
+          <a href="https://twitter.com" class="fa--a"><i class="fa fa-github fa-2x"></i></a>
+          <a href="https://twitter.com" class="fa--a"><i class="fa fa-linkedin fa-2x"></i></a>
+          <a href="https://twitter.com" class="fa--a"><i class="fa fa-envelope fa-2x"></i></a>
         </div>
       </div>
     </main>
 
     <footer>
+      <ul class="footer__social-media">
+          <li><a href="https://twitter.com" class="fa--a"><i class="fa fa-twitter"></i></a></li>
+          <li><a href="https://twitter.com" class="fa--a"><i class="fa fa-github"></i></a></li>
+          <li><a href="https://twitter.com" class="fa--a"><i class="fa fa-linkedin"></i></a></li>
+          <li><a href="https://twitter.com" class="fa--a"><i class="fa fa-envelope"></i></a></li>
+        </ul>
     </footer>
 
     <script>   
-      // when hitting F5, scroll up
-      window.onbeforeunload = function () {
-        window.scrollTo(0, 0);
-      }
+      if (window.innerWidth > 799) {
 
-      let i = 0;
-      // boolean variable to flag timeout before moving cursor to next line
-      let flag = false;
-      const pauseAtEnd = pauseAtStart = 2000;
-      const writtingSpeed = 30;
-      const nextLinePause = 600;
-      const txt = " My name is Artur\n> I write code\n>";
-      const terminal = document.getElementById("terminal");
+        // on F5 or get request, scroll up and reload page, but ONLY if the url does NOT point to a subpage
+        window.addEventListener("beforeunload", function () {
+          window.scrollTo(0, 0);
+          // this function needs to return a string
+          return "string";
+        });
 
-      // hide this element until switchLogos has terminated
-      document.getElementById("logo--hide").classList.add("hide");
+        let i = 0;
+        // boolean variable to flag timeout before moving cursor to next line
+        let flag = false;
+        const pauseAtEnd = pauseAtStart = 2000;
+        const writtingSpeed = 30;
+        const nextLinePause = 600;
+        const txt = " My name is Artur\n> I write code\n>";
+        const terminal = document.getElementById("terminal");
 
-      // disable scroll while intro is played
-      // document.body.style.overflow = "hidden";
-      disableScroll();
+        // hide this element until switchLogos has terminated
+        document.getElementById("logo--hide").classList.add("hide");
 
-      setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter());}, pauseAtStart);
+        // disable scroll while intro is played
+        // document.body.style.overflow = "hidden";
+        disableScroll();
 
-      /* 
-      ========================================
-      Prevent mouse scroll and keybord strokes
-      ========================================
-      */
+        setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter());}, pauseAtStart);
 
-      // left: 37, up: 38, right: 39, down: 40,
-      // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
-      var keys = {37: 1, 38: 1, 39: 1, 40: 1, 32:1, 33:1, 34:1, 35:1, 36:1};
+        /* 
+        ========================================
+        Prevent mouse scroll and keybord strokes
+        ========================================
+        */
 
-      function preventDefault(e) {
-        e.preventDefault();
-      }
+        // left: 37, up: 38, right: 39, down: 40,
+        // spacebar: 32, pageup: 33, pagedown: 34, end: 35, home: 36
+        var keys = {37: 1, 38: 1, 39: 1, 40: 1, 32:1, 33:1, 34:1, 35:1, 36:1};
 
-      function preventDefaultForScrollKeys(e) {
-        if (keys[e.keyCode]) {
-          preventDefault(e);
-          return false;
+        function preventDefault(e) {
+          e.preventDefault();
         }
-      }
 
-      // modern Chrome requires { passive: false } when adding event
-      var supportsPassive = false;
-      try {
-        window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
-          get: function () { supportsPassive = true; } 
-        }));
-      } catch(e) {}
-
-      var wheelOpt = supportsPassive ? { passive: false } : false;
-      var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
-
-      // call this to Disable
-      function disableScroll() {
-        window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
-        window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
-        window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
-        window.addEventListener('keydown', preventDefaultForScrollKeys, false);
-      }
-
-      // call this to Enable
-      function enableScroll() {
-        window.removeEventListener('DOMMouseScroll', preventDefault, false);
-        window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
-        window.removeEventListener('touchmove', preventDefault, wheelOpt);
-        window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
-      }
-
-      /*
-      ........................................................................
-      The code below is a disgrace but
-      JS was not part of this exercise so
-      I have to leave it as it is...
-      typeWriter is not reusable, it should not be invoking another function, etc...
-      It's probably easier to start over with clear OOD
-      ........................................................................
-      */
-      function typeWriter() {
-        if (flag) {
-          flag = false;
-          // keep '>' exclusively in last line
-          let newTxt = terminal.innerHTML;
-          newTxt = newTxt.replace('&gt;', '&nbsp;&nbsp;');
-          terminal.innerHTML = newTxt;
-          terminal.innerHTML += '<br>';
-        }
-        if (i < txt.length) {
-          if (txt.charAt(i) === '\n') {
-            setTimeout(typeWriter, nextLinePause);
-            flag = true;
-          } else {
-            terminal.innerHTML += txt.charAt(i);
-            setTimeout(typeWriter, writtingSpeed);
+        function preventDefaultForScrollKeys(e) {
+          if (keys[e.keyCode]) {
+            preventDefault(e);
+            return false;
           }
         }
-        else if (i === txt.length) {
-          // wait for other elements to finish loading
-          setTimeout(typeWriter, pauseAtEnd);
+
+        // modern Chrome requires { passive: false } when adding event
+        var supportsPassive = false;
+        try {
+          window.addEventListener("test", null, Object.defineProperty({}, 'passive', {
+            get: function () { supportsPassive = true; } 
+          }));
+        } catch(e) {}
+
+        var wheelOpt = supportsPassive ? { passive: false } : false;
+        var wheelEvent = 'onwheel' in document.createElement('div') ? 'wheel' : 'mousewheel';
+
+        // call this to Disable
+        function disableScroll() {
+          window.addEventListener('DOMMouseScroll', preventDefault, false); // older FF
+          window.addEventListener(wheelEvent, preventDefault, wheelOpt); // modern desktop
+          window.addEventListener('touchmove', preventDefault, wheelOpt); // mobile
+          window.addEventListener('keydown', preventDefaultForScrollKeys, false);
         }
-        else {
-          // enable scroll and remove listener
-          //document.body.style.overflow = "";
-          document.removeEventListener('DOMContentLoaded', typeWriter);
-          
-          // add listener for second part of this animation
-          document.addEventListener("scroll", endIntro);
-          enableScroll();
+
+        // call this to Enable
+        function enableScroll() {
+          window.removeEventListener('DOMMouseScroll', preventDefault, false);
+          window.removeEventListener(wheelEvent, preventDefault, wheelOpt); 
+          window.removeEventListener('touchmove', preventDefault, wheelOpt);
+          window.removeEventListener('keydown', preventDefaultForScrollKeys, false);
         }
-        i++;
-      }
-      function endIntro() {
-        document.removeEventListener("scroll", endIntro);
 
-        let resumeBtn = document.getElementById("nav-list-resume");
-        let navList = document.getElementById("nav-list");
-
-        // wipe the screen
-        clearTerminal();
-
-        // add nav transition 
-        navList.style.transition = "opacity 3s, transform 1.5s";
-        navList.style.opacity = "1";
-        navList.style.transform = "translate(0%)";
-
-        resumeBtn.style.transform = "translate(0%)";
-        resumeBtn.style.transition = "opacity 1s ease-in";
-        resumeBtn.style.opacity = "1";
-      }
-      
-      function clearTerminal() {
-        let txt = terminal.innerHTML;
-        let i = txt.length - 1;
-        let delay = 50;
-
-        hideTerminal(i * delay - 1000);
-
-        setInterval(function() {
-          if (i > 0) {
-            // prevent scrolling until animation is finished - for reusability, this should not be part of this function
-            window.scrollTo(0, 0);
-            if (txt.charAt(i) === ';') {
-              let pointer = i - 1;
-              while (pointer >= 0 && txt.charAt(pointer) != '&') {
-                pointer--;
-                // this is not character entity, return
-                if (i - pointer > 5) break;
-              }
-              if (txt.substring(pointer, i + 1) === '&gt;') {
-                // del break line
-                i -= 4;
-                // find prev break line and move 'active line cursor' there
-                let index = findMatch(txt.substring(0, i), '<br>', true);
-
-                if (index < 0) {
-                  txt = '&gt;' + txt;
-                }
-                else {
-                  index += 4;
-                  txt = txt.substring(0, index) + '&gt;' + txt.substring(index, i);
-                }
-              }
-              if (txt.charAt(pointer) === '&') i = pointer;
+        /*
+        ........................................................................
+        The code below is a disgrace but
+        JS was not part of this exercise so
+        I have to leave it as it is...
+        typeWriter is not reusable, it should not be invoking another function, etc...
+        It's probably easier to start over with clear OOD
+        ........................................................................
+        */
+        function typeWriter() {
+          if (flag) {
+            flag = false;
+            // keep '>' exclusively in last line
+            let newTxt = terminal.innerHTML;
+            newTxt = newTxt.replace('&gt;', '&nbsp;&nbsp;');
+            terminal.innerHTML = newTxt;
+            terminal.innerHTML += '<br>';
+          }
+          if (i < txt.length) {
+            if (txt.charAt(i) === '\n') {
+              setTimeout(typeWriter, nextLinePause);
+              flag = true;
+            } else {
+              terminal.innerHTML += txt.charAt(i);
+              setTimeout(typeWriter, writtingSpeed);
             }
-            txt = txt.substring(0, i);
-            i--;
-            if (i < 1) {
-              txt = '>';
-              hideHome();
-            }
-            terminal.innerHTML = txt;
           }
-        }, delay);
-      }
-
-
-      // change opacity of #home to 0
-      function hideTerminal(duration) {
-        let home = document.getElementById("home");
-        let styleString = "opacity " + duration + "ms";
-
-        // terminal.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
-        // terminal.style.opacity = "0";
-        // cursor.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
-        // cursor.style.opacity = "0";
-
-        home.style.transition = styleString;
-        home.style.opacity = "0";
-        // cursor.style.transition = styleString;
-        // cursor.style.opacity = "0";
-      }
-
-      // hides #intro, animates #about and displays logo
-      function hideHome() {
-        let stringToPrint = document.getElementById("about-title").innerHTML;
-        console.log(stringToPrint);
-        document.getElementById("home").style.display = "none";
-        let about = document.getElementById("about");
-
-        about.style.transition = "transform 0.8s, opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1)";
-        about.style.transform = "matrix(1,0,0,1,0,-200)";
-        about.style.opacity = "1";
-
-        // display logo
-        let logoSmall = document.getElementById("logo__img");
-        logoSmall.style.transition = "opacity 1s";
-        logoSmall.style.opacity = "1";
-        // when DOM was loded, logo--hide (div with two logos) was moved off the screen using the class .hide
-        document.getElementById("logo--hide").classList.remove("hide");
-      }
-
-      // returns first occurance of substring in txt if last = false or last occurance otherwise
-      function findMatch(txt, substring, last = false) {
-        let res;
-        let index = txt.indexOf(substring);
-        if (!last || index < 0) return index;
-        while(index > 0) {
-          res = index;
-          index = txt.indexOf(substring, index + 1);
-        }
-        return res;
-      }
-
-      /*
-      ============================================================================
-      This was used with CSS animation which is now replaced by JS triggered event
-      ============================================================================
-
-      let logoPic = document.getElementById("intro__logo");
-      logoPic.addEventListener("animationend", switchLogos);
-
-
-      function switchLogos() {
-          document.getElementById("logo__img").style.opacity = "1";
-          document.getElementById("logo--hide").classList.remove("hide");
-          logoPic.removeEventListener("animationend", switchLogos);
-      }
-      */
-
-      /*
-      Another use of global variables
-      !!!!!!!!!!!
-      */
-
-      let navbar = document.getElementById("navbar");
-      let windowHeight = window.innerHeight;   
-      let projects = document.getElementById("projects");
-      let projectsOffset = projects.offsetTop;
-
-      let transitionInitialized = false;
-      let click = false;
-      let done = false;
-
-      let prevPos = 0;
-      let scrollVal = 30;
-
-      window.onscroll = function() {
-        let curPos = document.body.scrollTop || document.documentElement.scrollTop;
-
-        // do this only 'once'
-        if (!done) {
-
-          // not sure about the values, figured out this one by trial and error
-          // if scroll value is large enough, it was caused by a mouse click
-          if (curPos - prevPos > 80) click = true;
-
-          // curPos + windowHeight = scroll amount at the bottom of the screen  
-          if (curPos + windowHeight >= projectsOffset && !transitionInitialized) { 
-            transitionInitialized = true;
-
-            // delay transition so that it is visible
-            windowHeight -= 500;
-
-          }
-          if (transitionInitialized && curPos + windowHeight >= projectsOffset) {
-
-            // this is part of scroll transition, do not use otherwise
-            if (!click) projects.style.top = "200px";
-            
-            done = true;
-            transitionFunction(click);
-          }
-        }
-
-        navbarToggle(curPos, navbar);
-      }
-
-
-      function navbarToggle(curPos) {
-        // document.body.scrollTop - Safari
-        // document.documentElement.scrollTop - the rest
-        // let curPos = window.pageYOffset;
-
-
-        // wait for scroll to 'settle'
-        if (Math.abs(curPos - prevPos) > scrollVal) {
-          // first time
-          if (prevPos <= scrollVal) {
-            // move headear up 5px at 200ms transition, add box-shadow
-            navbar.style.transition = "top 200ms"; // 1s is too much to move 5px - perhaps lines below could be more concise?
-            // navbar.style.transition = "top 1ms" could be added in the last else, but then this line would be executed every time scroll is triggered
-            // event listener adds 'complexity' but the css property in question gets updated when needed only
-            // However, for some reason, the listener prevents smooth transition from the initial position when fast scrolling down
-            // navbar.addEventListener("transitionend", () => {navbar.removeEventListener("transitionend", () => {}); navbar.style.transition = "top 1s";});
-            // navbar.ontransitionend = () => {navbar.style.transition = "top 1s";}; 
-            navbar.style.top = "-5px";
-            navbar.classList.add("header--lifted");
-          }
-          // scrolled back to top
-          else if (curPos <= scrollVal) {
-            // remove box-shadow and drop header to original position
-            // navbar.style.transition = "top 200ms";
-            navbar.classList.remove("header--lifted");
-            navbar.style.top = "0px";
+          else if (i === txt.length) {
+            // wait for other elements to finish loading
+            setTimeout(typeWriter, pauseAtEnd);
           }
           else {
-            navbar.style.transition = "top 1s";
-            if (curPos > prevPos) {
-              navbar.style.top = "-85px";
-            }
-            else 
-              navbar.style.top = "0px";
+            // enable scroll and remove listener
+            //document.body.style.overflow = "";
+            document.removeEventListener('DOMContentLoaded', typeWriter);
+            
+            // add listener for second part of this animation
+            document.addEventListener("scroll", endIntro);
+            enableScroll();
           }
-          // update last position
-          prevPos = curPos;
+          i++;
+        }
+        function endIntro() {
+          document.removeEventListener("scroll", endIntro);
+
+          let resumeBtn = document.getElementById("nav-list-resume");
+          let navList = document.getElementById("nav-list");
+
+          // wipe the screen
+          clearTerminal();
+
+          // add nav transition 
+          navList.style.transition = "opacity 3s, transform 1.5s";
+          navList.style.opacity = "1";
+          navList.style.transform = "translate(0%)";
+
+          resumeBtn.style.transform = "translate(0%)";
+          resumeBtn.style.transition = "opacity 1s ease-in";
+          resumeBtn.style.opacity = "1";
+        }
+        
+        function clearTerminal() {
+          let txt = terminal.innerHTML;
+          let i = txt.length - 1;
+          let delay = 50;
+
+          hideTerminal(i * delay - 1000);
+
+          setInterval(function() {
+            if (i > 0) {
+              // prevent scrolling until animation is finished - for reusability, this should not be part of this function
+              window.scrollTo(0, 0);
+              if (txt.charAt(i) === ';') {
+                let pointer = i - 1;
+                while (pointer >= 0 && txt.charAt(pointer) != '&') {
+                  pointer--;
+                  // this is not character entity, return
+                  if (i - pointer > 5) break;
+                }
+                if (txt.substring(pointer, i + 1) === '&gt;') {
+                  // del break line
+                  i -= 4;
+                  // find prev break line and move 'active line cursor' there
+                  let index = findMatch(txt.substring(0, i), '<br>', true);
+
+                  if (index < 0) {
+                    txt = '&gt;' + txt;
+                  }
+                  else {
+                    index += 4;
+                    txt = txt.substring(0, index) + '&gt;' + txt.substring(index, i);
+                  }
+                }
+                if (txt.charAt(pointer) === '&') i = pointer;
+              }
+              txt = txt.substring(0, i);
+              i--;
+              if (i < 1) {
+                txt = '>';
+                hideHome();
+              }
+              terminal.innerHTML = txt;
+            }
+          }, delay);
         }
 
 
-        // let scrollingDown = false;
-        // // wait for scroll to 'settle'
-        // if (Math.abs(curPos - prevPos) > 30) {
-        //   let diff = prevPos - curPos;
+        // change opacity of #home to 0
+        function hideTerminal(duration) {
+          let home = document.getElementById("home");
+          let styleString = "opacity " + duration + "ms";
 
-        //   // scroll down / navbar up
-        //   if (diff < 0) {
-        //     if (!scrollingDown) {
-        //       document.getElementById("navbar").style.top = "-15px";
-        //       scrollingDown = true;
-        //     }
-        //     else document.getElementById("navbar").style.top = "-65px";
-        //   }
-        //   // else scroll up / display navbar
-        //   else {
-        //     scrollingDown = false;
-        //     document.getElementById("navbar").style.top = "0px";
-        //   }
+          // terminal.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
+          // terminal.style.opacity = "0";
+          // cursor.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
+          // cursor.style.opacity = "0";
 
-        //   prevPos = curPos;
-        // }
-      }
-
-
-      function transitionFunction(click) {
-        if (click) {
-          projects.style.transition = "opacity 2s cubic-bezier(0.645, 0.045, 0.355, 1)";
-          projects.style.opacity = "1";
+          home.style.transition = styleString;
+          home.style.opacity = "0";
+          // cursor.style.transition = styleString;
+          // cursor.style.opacity = "0";
         }
-        else {
-          projects.style.transition = "transform 1s, opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
-          projects.style.transform = "matrix(1,0,0,1,0,-200)";
-          projects.style.opacity = "1";
-          //main.style.transform = "matrix(1,0,0,1,0,-800)";
+
+        // hides #intro, animates #about and displays logo
+        function hideHome() {
+          let stringToPrint = document.getElementById("about-title").innerHTML;
+          console.log(stringToPrint);
+          document.getElementById("home").style.display = "none";
+          let about = document.getElementById("about");
+
+          about.style.transition = "transform 0.8s, opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1)";
+          about.style.transform = "matrix(1,0,0,1,0,-200)";
+          about.style.opacity = "1";
+
+          // display logo
+          let logoSmall = document.getElementById("logo__img");
+          logoSmall.style.transition = "opacity 1s";
+          logoSmall.style.opacity = "1";
+          // when DOM was loded, logo--hide (div with two logos) was moved off the screen using the class .hide
+          document.getElementById("logo--hide").classList.remove("hide");
+        }
+
+        // returns first occurance of substring in txt if last = false or last occurance otherwise
+        function findMatch(txt, substring, last = false) {
+          let res;
+          let index = txt.indexOf(substring);
+          if (!last || index < 0) return index;
+          while(index > 0) {
+            res = index;
+            index = txt.indexOf(substring, index + 1);
+          }
+          return res;
+        }
+
+        /*
+        ============================================================================
+        This was used with CSS animation which is now replaced by JS triggered event
+        ============================================================================
+
+        let logoPic = document.getElementById("intro__logo");
+        logoPic.addEventListener("animationend", switchLogos);
+
+
+        function switchLogos() {
+            document.getElementById("logo__img").style.opacity = "1";
+            document.getElementById("logo--hide").classList.remove("hide");
+            logoPic.removeEventListener("animationend", switchLogos);
+        }
+        */
+
+        /*
+        Another use of global variables
+        !!!!!!!!!!!
+        */
+
+        let navbar = document.getElementById("navbar");
+        let windowHeight = window.innerHeight;   
+        let projects = document.getElementById("projects");
+        let projectsOffset = projects.offsetTop;
+
+        let transitionInitialized = false;
+        let click = false;
+        let done = false;
+
+        let prevPos = 0;
+        let scrollVal = 30;
+
+        window.onscroll = function() {
+          let curPos = document.body.scrollTop || document.documentElement.scrollTop;
+
+          // do this only 'once'
+          if (!done) {
+
+            // not sure about the values, figured out this one by trial and error
+            // if scroll value is large enough, it was caused by a mouse click
+            if (curPos - prevPos > 80) click = true;
+
+            // curPos + windowHeight = scroll amount at the bottom of the screen  
+            if (curPos + windowHeight >= projectsOffset && !transitionInitialized) { 
+              transitionInitialized = true;
+
+              // delay transition so that it is visible
+              windowHeight -= 500;
+
+            }
+            if (transitionInitialized && curPos + windowHeight >= projectsOffset) {
+
+              // this is part of scroll transition, do not use otherwise
+              if (!click) projects.style.top = "200px";
+              
+              done = true;
+              transitionFunction(click);
+            }
+          }
+
+          navbarToggle(curPos, navbar);
+        }
+
+
+        function navbarToggle(curPos) {
+          // document.body.scrollTop - Safari
+          // document.documentElement.scrollTop - the rest
+          // let curPos = window.pageYOffset;
+
+
+          // wait for scroll to 'settle'
+          if (Math.abs(curPos - prevPos) > scrollVal) {
+            // first time
+            if (prevPos <= scrollVal) {
+              // move headear up 5px at 200ms transition, add box-shadow
+              navbar.style.transition = "top 200ms"; // 1s is too much to move 5px - perhaps lines below could be more concise?
+              // navbar.style.transition = "top 1ms" could be added in the last else, but then this line would be executed every time scroll is triggered
+              // event listener adds 'complexity' but the css property in question gets updated when needed only
+              // However, for some reason, the listener prevents smooth transition from the initial position when fast scrolling down
+              // navbar.addEventListener("transitionend", () => {navbar.removeEventListener("transitionend", () => {}); navbar.style.transition = "top 1s";});
+              // navbar.ontransitionend = () => {navbar.style.transition = "top 1s";}; 
+              navbar.style.top = "-5px";
+              navbar.classList.add("header--lifted");
+            }
+            // scrolled back to top
+            else if (curPos <= scrollVal) {
+              // remove box-shadow and drop header to original position
+              // navbar.style.transition = "top 200ms";
+              navbar.classList.remove("header--lifted");
+              navbar.style.top = "0px";
+            }
+            else {
+              navbar.style.transition = "top 1s";
+              if (curPos > prevPos) {
+                navbar.style.top = "-85px";
+              }
+              else 
+                navbar.style.top = "0px";
+            }
+            // update last position
+            prevPos = curPos;
+          }
+
+
+          // let scrollingDown = false;
+          // // wait for scroll to 'settle'
+          // if (Math.abs(curPos - prevPos) > 30) {
+          //   let diff = prevPos - curPos;
+
+          //   // scroll down / navbar up
+          //   if (diff < 0) {
+          //     if (!scrollingDown) {
+          //       document.getElementById("navbar").style.top = "-15px";
+          //       scrollingDown = true;
+          //     }
+          //     else document.getElementById("navbar").style.top = "-65px";
+          //   }
+          //   // else scroll up / display navbar
+          //   else {
+          //     scrollingDown = false;
+          //     document.getElementById("navbar").style.top = "0px";
+          //   }
+
+          //   prevPos = curPos;
+          // }
+        }
+
+
+        function transitionFunction(click) {
+          if (click) {
+            projects.style.transition = "opacity 2s cubic-bezier(0.645, 0.045, 0.355, 1)";
+            projects.style.opacity = "1";
+          }
+          else {
+            projects.style.transition = "transform 1s, opacity 0.8s cubic-bezier(0.645, 0.045, 0.355, 1)";
+            projects.style.transform = "matrix(1,0,0,1,0,-200)";
+            projects.style.opacity = "1";
+            //main.style.transform = "matrix(1,0,0,1,0,-800)";
+          }
         }
       }
     </script>
