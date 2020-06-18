@@ -20,11 +20,11 @@
         </a>
       </div>
 
-      <button class="nav-toggle" aria-label="toggle navigation">
+      <button class="nav-toggle" id="nav-hamburger" aria-label="toggle navigation">
         <span class="hamburger"></span>
       </button>
 
-      <nav class="nav">
+      <nav class="nav" id="nav">
         <ul class="nav__list" id="nav-list">
           <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
@@ -67,7 +67,7 @@
           <div class="portfolio">
             <div class="portfolio__item">
               <a href="#" class="portfolio__item__image">
-                <img src="./public/img/project2.jpg" alt="Project 1" class="portfolio__item__image--img">
+                <img src="./public/img/p2.jpg" alt="Project 1" class="portfolio__item__image--img">
               </a>
               <!-- <div class="portfolio__item__body"> -->
                 <h3 class="portfolio__item__subtitle">name of project 1</h3>
@@ -77,7 +77,7 @@
 
             <div class="portfolio__item">
               <a href="#" class="portfolio__item__image">
-                <img src="./public/img/project3.jpg" alt="Project 2" class="portfolio__item__image--img">
+                <img src="./public/img/p3.jpg" alt="Project 2" class="portfolio__item__image--img">
               </a>
               <!-- <div class="portfolio__item__body"> -->
                 <h3 class="portfolio__item__subtitle">name of project 2 name of project 2</h3>
@@ -87,7 +87,7 @@
 
             <div class="portfolio__item">
               <a href="#" class="portfolio__item__image">
-                <img src="./public/img/project4.jpg" alt="Project 3" class="portfolio__item__image--img">
+                <img src="./public/img/p4.jpg" alt="Project 3" class="portfolio__item__image--img">
               </a>
               <!-- <div class="portfolio__item__body"> -->
                 <h3 class="portfolio__item__subtitle">name of project 3</h3>
@@ -125,6 +125,7 @@
     </footer>
 
     <script>   
+      // no JS allowed on small screens, except for animated hamburger menu
       if (window.innerWidth > 799) {
 
         // on F5 or get request, scroll up and reload page, but ONLY if the url does NOT point to a subpage
@@ -495,6 +496,28 @@
             //main.style.transform = "matrix(1,0,0,1,0,-800)";
           }
         }
+      }
+      else {
+          const navHamburger = document.getElementById("nav-hamburger");
+          const navMenu = document.getElementById("nav");   
+          // eventListener resets this flag to delay menu transition        
+          let firstTime = true;
+
+          navHamburger.addEventListener("click", () => {
+            navMenu.classList.toggle("hamburger--open");
+            firstTime = true;
+          });
+
+          navMenu.addEventListener("click", close);
+
+          function close() {
+              if (firstTime) {
+                setTimeout(close, 300);   
+                firstTime = false;
+              }
+              else  
+                navMenu.classList.remove("hamburger--open");        
+          };
       }
     </script>
   </body>

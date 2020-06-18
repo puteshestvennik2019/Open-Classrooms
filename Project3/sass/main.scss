@@ -179,6 +179,7 @@ a {
     background: $colour-primary;
     text-align: center;
     transform: translate(100%);
+    transition: transform 0.5s;
     &__list {
       height: 60%;
       width: 100%;
@@ -230,6 +231,7 @@ a {
     display: none;
   }
 }
+
 .nav-toggle {
   height: 2em;
   position: fixed;
@@ -239,10 +241,14 @@ a {
   border: none;
   cursor: pointer;
   z-index: 10;
-  &:focus + .nav {
-    transform: translate(-10%);
-    transition: transform 2s;
-  }
+  // &:focus + .nav {
+  //   transform: translate(-10%);
+  //   //transition: transform 2s;
+  // }
+}
+
+.hamburger--open {
+  transform: translate(-10%);
 }
 
 .nav__list {
