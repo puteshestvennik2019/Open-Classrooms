@@ -48,6 +48,10 @@ p {
   line-height: 1.4;
 }
 
+ul li {
+  list-style: none;
+}
+
 /* Typography */
 h1, h2, h3, #terminal {
   line-height: 1.1;
@@ -226,7 +230,6 @@ a:hover > .char {
 }
 
 .nav__list {
-  list-style: none;
   display: flex;
 }
 
@@ -618,6 +621,141 @@ footer {
     transform: scale(1);
     opacity: 1;
   }
+}
+/**
+  * Resume *
+*/
+.resume {
+  position: relative;
+  width: 60vW;
+  margin: 0 auto;
+  display: grid;
+  grid-template-rows: repeat(3, auto);
+  grid-template-columns: repeat(3, 1fr);
+  grid-column-gap: 2em;
+  grid-row-gap: 1em;
+  pointer-events: none;
+}
+.resume__subsection {
+  color: #FCDA03;
+}
+.resume:hover > *:not(:hover):not(:first-child) {
+  opacity: 0.5;
+}
+.resume__fa {
+  margin-right: 0.5em;
+  padding: 0.5em;
+  border-radius: 50%;
+  background: #FCDA03;
+  color: #0A1A30;
+  transition-duration: 400ms;
+}
+.resume > div {
+  background: #1C3557;
+  padding: 1em;
+  width: 100%;
+  transition: opacity 700ms;
+}
+.resume > div:not(:first-child) {
+  pointer-events: auto;
+}
+.resume > div:hover .resume__fa {
+  transform: scale(1.3);
+}
+.resume__list {
+  position: relative;
+  padding-left: 1.5em;
+  margin-left: 0.5em;
+  border-left: 3px solid #FCDA03;
+  list-style: none;
+}
+.resume__item::before {
+  width: 4px;
+  height: 4px;
+  margin-top: 5px;
+  border: 5px solid #FCDA03;
+  background: black;
+  border-radius: 50%;
+  left: -30px;
+  top: -5px;
+  position: absolute;
+  content: "";
+}
+.resume__item {
+  position: relative;
+  margin-bottom: 0.5em;
+  color: #DDDD;
+}
+.resume__item:hover .resume__item--title {
+  color: #FCDA03;
+  transition-duration: 0.5s;
+}
+.resume__item:hover .resume__item--title::after {
+  width: 70%;
+}
+.resume__item:hover::before {
+  border-color: #DDDDDD;
+}
+.resume__item--title {
+  font-size: 130%;
+  padding-bottom: 0.1em;
+  color: #DDDDDD;
+}
+.resume__item--title::after {
+  content: "";
+  width: 0px;
+  height: 1px;
+  display: block;
+  background: #FCDA03;
+  transition: 500ms;
+}
+.resume__item--body {
+  display: none;
+}
+.resume__info {
+  grid-area: info;
+  grid-column: 1/2;
+  grid-row: 1/4;
+}
+.resume__education {
+  grid-area: education;
+  grid-column: 2/3;
+  grid-row: 1/2;
+}
+.resume__experience {
+  grid-area: experience;
+  grid-column: 3/4;
+  grid-row: 1/2;
+}
+.resume__skills {
+  grid-area: skills;
+  grid-column: 2/4;
+  grid-row: 2/3;
+}
+.resume__skills__bars {
+  display: grid;
+  padding-left: 2em;
+}
+.resume__skills__bars__bar {
+  display: inline-block;
+  vertical-align: middle;
+  height: 3px;
+  width: 75%;
+  background: #DDDDDD;
+}
+.resume__skills__bars__list {
+  padding-left: 0;
+}
+.resume__skills__bars__label {
+  display: inline-block;
+  margin: 0.2em 0;
+  width: 25%;
+  font-size: 110%;
+}
+.resume__interest {
+  grid-area: interest;
+  grid-column: 2/4;
+  grid-row: 3/4;
 }
 
 /*# sourceMappingURL=style.css.map */
