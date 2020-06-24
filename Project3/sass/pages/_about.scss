@@ -1,46 +1,68 @@
-.about {
-    width: 100%;
+.about-me__body {
+  padding-top: 1em;
+}
+
+.about-me__img {
+    width: 80%;
+    margin-top: 1em;
+}
+
+@media (min-width: 650px) {
+  .about-me {
+    position: relative;
     display: grid;
-    grid-template-columns: 2fr 5fr; 
-    grid-template-rows: repeat(3, auto);
-    padding: $grid-gutter;
-    grid-template-areas:
-        "imagery heading"
-        "imagery copy"
-        "imagery btn";
-    margin-bottom: $grid-gutter;
-    &__heading {
-        grid-area: heading;
-        color: $colour-white;
-        @include heading-shadow;
-        text-align: right;
-        padding-right: $grid-gutter;
+    grid-template-areas: 
+      "title img"
+      "subtitle img"
+      "body img";
+    grid-column-gap: 6em; /*4em gap + 2em to compensate for img moved to the left*/
+
+    &__title {
+      grid-area: title;
     }
-    &__imagery {
-        grid-area: imagery;
+
+    &__subtitle {
+      grid-area: subtitle;
+      grid-column: -1 / 1;
+      padding-right: calc(250px + 2em); /*put these in variables: pic width and paddings*/
     }
-    &__pic {
-        overflow:hidden;
-        width: 80%;
-        border-radius: 1000rem;
-        border: 1.5rem solid $colour-primary;
-        & img {
-            display: block;
-            width: 100%;
-        }
+
+    &_body {
+      grid-area: body;
+      min-width: 250px;
+      padding-top: 1em;
     }
-    &__copy {
-        grid-area: copy;
-        & p{
-            line-height: 2rem*1.2;
-            margin-bottom: $grid-gutter*2.25;
-        } 
+
+    &__img {
+      min-width: 250px;
+      grid-area: img;
+      position: relative;
+      right: 2em;
+      box-shadow: .2em .2em 0.75em rgba(0,0,0,.25);
+      margin-top: 1.5em;
     }
-    &__btn{
-        @include btn;
-        grid-area: btn;
-        & a {
-            text-decoration: none;
-        }
-    }
+  }
+}
+
+@media (min-width: 1450px) {
+  section:nth-child(odd) {
+    float: right;
+  }
+
+  section:nth-child(even) {
+    float: left;
+  }
+
+  .portfolio__item:nth-child(odd) {
+    left: 150px;
+  }
+}
+
+// properties needed for transition - many use javascript - don't display on small screens
+@media (min-width: 800px) {
+  .about-me {
+    top: 200px;
+    opacity: 0;
+    transform: scale(0.5);
+  }
 }

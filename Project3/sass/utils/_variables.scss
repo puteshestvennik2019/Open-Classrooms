@@ -1,9 +1,27 @@
-$colour-primary: #15DEA5;
-$colour-secondary: #001534;
-$colour-accent: #D6FFF5;
-$colour-white: #fff;
-$colour-invalid: #DB464B;
+// $colour-primary: #15DEA5;
+// $colour-secondary: #001534;
+// $colour-accent: #D6FFF5;
+// $colour-white: #fff;
+// $colour-invalid: #DB464B;
 
-$heading-shadow-size: .55rem;
-$layout-margin: 6rem;
-$grid-gutter: $layout-margin * .25;
+// $heading-shadow-size: .55rem;
+// $layout-margin: 6rem;
+// $grid-gutter: $layout-margin * .25;
+
+
+
+$colour-primary: #0A1A30;
+$colour-secondary: #1C3557;
+$colour-font: #DDDDDD;
+$colour-accent: #FCDA03;
+$colour-white: #FFF;
+$colour-invalid: #DB464B;
+$colour-faded: #DDDD;
+
+$ff-primary: 'Roboto', sans-serif;
+$ff-secondary: 'Roboto Mono', monospace;
+$fw-bold: 900;
+$fs-h1: 3rem;
+$fs-h2: 2.25rem;
+$fs-h3: 1.5rem;
+$fs-rest: 1rem;

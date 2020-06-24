@@ -1,7 +1,102 @@
-@function lightness-shift($colour) {
-    @if (lightness($colour) < 25%){
-        @return lighten($colour, 10%);
-    }@else{
-        @return darken($colour, 10%);
-    }
+.intro {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  min-height: 100vh;
+}
+
+@media (max-width: 799px) {
+  .intro {
+    display: none;
+  }
+}
+
+.intro__logo {
+  width: 100%;
+  margin : auto;
+  img {
+    animation: 1.4s display;
+    animation-fill-mode: forwards;
+  }
+  z-index: 1000;
+}
+
+.intro__code {
+  margin: auto 0;
+}
+
+/* Animation */
+
+.cursor {
+  font-size: $fs-h1;
+  animation: 1s blink step-end infinite;
+
+  -webkit-animation: 1s blink step-end infinite;
+  -moz-animation: 1s blink step-end infinite;
+  -ms-animation: 1s blink step-end infinite;
+  -o-animation: 1s blink step-end infinite;
+}
+
+@keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: $colour-font;
+  }
+}
+
+@-moz-keyframes blink {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: $colour-secondary;
+  }
+}
+
+@-webkit-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: $colour-secondary;
+  }
+}
+
+@-ms-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: $colour-secondary;
+  }
+}
+
+@-o-keyframes "blink" {
+  from, to {
+    color: transparent;
+  }
+  50% {
+    color: $colour-secondary;
+  }
+}
+
+// Intro: brings up large logo;
+@keyframes display {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  65% {
+    transform: scale(0.6);
+  }
+  75% {
+    transform: scale(1.2);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

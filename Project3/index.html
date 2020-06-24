@@ -29,7 +29,7 @@
           <li class="nav__link"> <a href="#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
         </ul>
-        <div class="nav__link--resume" id="nav-list-resume"> <a class="btn" href="/resume.html">resume</a></div> 
+        <div class="nav__link--resume" id="nav-list-resume"> <a class="btn" href="./resume.html">resume</a></div> 
       </nav>
     </header>
 
@@ -245,8 +245,8 @@
         function endIntro() {
           document.removeEventListener("scroll", endIntro);
 
-          let resumeBtn = document.getElementById("nav-list-resume");
-          let navList = document.getElementById("nav-list");
+          const resumeBtn = document.getElementById("nav-list-resume");
+          const navList = document.getElementById("nav-list");
 
           // wipe the screen
           clearTerminal();
@@ -264,7 +264,7 @@
         function clearTerminal() {
           let txt = terminal.innerHTML;
           let i = txt.length - 1;
-          let delay = 50;
+          const delay = 50;
 
           hideTerminal(i * delay - 1000);
 
@@ -309,8 +309,8 @@
 
         // change opacity of #home to 0
         function hideTerminal(duration) {
-          let home = document.getElementById("home");
-          let styleString = "opacity " + duration + "ms";
+          const home = document.getElementById("home");
+          const styleString = "opacity " + duration + "ms";
 
           // terminal.style.transition = "opacity %duration".replace("%duration", duration) + "ms";
           // terminal.style.opacity = "0";
@@ -325,17 +325,16 @@
 
         // hides #intro, animates #about and displays logo
         function hideHome() {
-          let stringToPrint = document.getElementById("about-title").innerHTML;
-          console.log(stringToPrint);
+          const stringToPrint = document.getElementById("about-title").innerHTML;
           document.getElementById("home").style.display = "none";
-          let about = document.getElementById("about");
+          const about = document.getElementById("about");
 
           about.style.transition = "transform 0.8s, opacity 0.6s cubic-bezier(0.645, 0.045, 0.355, 1)";
           about.style.transform = "matrix(1,0,0,1,0,-200)";
           about.style.opacity = "1";
 
           // display logo
-          let logoSmall = document.getElementById("logo__img");
+          const logoSmall = document.getElementById("logo__img");
           logoSmall.style.transition = "opacity 1s";
           logoSmall.style.opacity = "1";
           // when DOM was loded, logo--hide (div with two logos) was moved off the screen using the class .hide
@@ -375,11 +374,11 @@
         !!!!!!!!!!!
         */
 
-        let navbar = document.getElementById("navbar");
-        let windowHeight = window.innerHeight;   
-        let projects = document.getElementById("projects");
-        let projectsOffset = projects.offsetTop;
+        const navbar = document.getElementById("navbar");
+        const projects = document.getElementById("projects");
+        const projectsOffset = projects.offsetTop;
 
+        let windowHeight = window.innerHeight;   
         let transitionInitialized = false;
         let click = false;
         let done = false;
@@ -496,6 +495,9 @@
           }
         }
       }
+      // ==================
+      // SMALL SCREENS ONLY
+      // ==================
       else {
           const navHamburger = document.getElementById("nav-hamburger");
           const navMenu = document.getElementById("nav");   

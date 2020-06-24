@@ -1,17 +1,37 @@
-*,
-*::after,
-*::before {
-    margin: 0;
-    padding: 0;
-    box-sizing: inherit;
-}
+*, *::before, *::after {box-sizing: border-box;}
+
+/* Global properties */
 
 html {
-    // 10px div by def of 16px
-    font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
-    box-sizing: border-box;
-    background: $colour-secondary;
+  background: $colour-primary;
+  color: $colour-font;
+  padding: 0 2.5em;
+  font-size: $fs-rest;
+  line-height: 1.2;
+  margin: 0;
+  font-family: $ff-primary;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+p {
+  margin: 0.4em 0;
+  line-height: 1.4;
+}
+
+ul li {
+  list-style: none;
+}
+
+main {
+  width: 100%;
+  padding-top: 8em;
+  display: flex;
 }

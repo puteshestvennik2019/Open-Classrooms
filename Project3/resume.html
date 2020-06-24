@@ -11,7 +11,7 @@
     <title>Artur Kasprzak | Resume</title>
   </head>
   <body>
-    <header class="header" id="navbar">
+    <header class="header resume__header" id="navbar">
 <!--       <div class="logo" id="logo--hide">
         <a href="https://puteshestvennik2019.github.io/Open-Classrooms/Project3/index.html">
           <img class="logo__img" id="logo__img" src="./public/img/logo.png" alt="">
@@ -19,15 +19,15 @@
         </a>
       </div> -->
 
-      <button class="nav-toggle" id="nav-hamburger" aria-label="toggle navigation">
-        <span class="hamburger"></span>
+      <button class="nav-toggle resume__nav-toggle" id="nav-hamburger" aria-label="toggle navigation">
+        <span class="hamburger resume__hamburger"></span>
       </button>
 
-      <nav class="nav" id="nav">
-        <ul class="nav__list" id="nav-list">
-          <li class="nav__link nav__link--active"> <a href="/index.html#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
-          <li class="nav__link"> <a href="/index.htm#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
-          <li class="nav__link"> <a href="/index.htm#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
+      <nav class="nav resume__nav" id="nav">
+        <ul class="nav__list resume__nav__list" id="nav-list">
+          <li class="nav__link nav__link--active"> <a href="./index.html#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
+          <li class="nav__link"> <a href="./index.html#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
+          <li class="nav__link"> <a href="./index.html#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
         </ul>
         <div class="nav__link--resume" id="nav-list-resume"> <a class="btn" href="/resume.html">resume</a></div> 
       </nav>
@@ -122,5 +122,30 @@
     	</div>
     	<div class="resume__interest">
     		<h3 class="resume__subsection"><i class="fa fa-list-ul resume__fa"></i>interest & achievements</h3>
+    	</div>
     </main>
+    <script type="text/javascript">
+    	const navHamburger = document.getElementById("nav-hamburger");
+        const navMenu = document.getElementById("nav");   
+        // eventListener resets this flag to delay menu transition        
+        let firstTime = true;
+
+        navHamburger.addEventListener("click", () => {
+            navMenu.classList.toggle("hamburger--open");
+            firstTime = true;
+        });
+
+        navMenu.addEventListener("click", close);
+
+        function close() {
+            if (firstTime) {
+              setTimeout(close, 300);   
+              firstTime = false;
+            }
+            else  
+              navMenu.classList.remove("hamburger--open");        
+        };
+    </script>
+  </body>
+</html>
 
