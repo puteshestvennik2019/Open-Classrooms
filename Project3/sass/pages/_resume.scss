@@ -188,7 +188,7 @@
 
 @media (max-width: 1000px) {
   .resume {
-    padding-top: 4em;
+    // padding-top: 8em;
     grid-template-rows: repeat(4, auto);
     grid-template-columns: repeat(2, 1fr);
 
@@ -232,6 +232,7 @@
     //   "info interest interest";
     // grid-template-rows: repeat(5, auto);
     // grid-template-columns: auto;
+    // padding-top: 4em;
     display: flex;
     flex-direction: column;
 
@@ -247,34 +248,34 @@
       width: 60%;
     }
 
-    &__info {
-      grid-area: info;
-      grid-column: 1/3;
-      grid-row: 1/2;
-    }
+    // &__info {
+    //   grid-area: info;
+    //   grid-column: 1/3;
+    //   grid-row: 1/2;
+    // }
 
-    &__education {
-      grid-area: education;
-      grid-column: 1/2;
-      grid-row: 2/3;
-    }
+    // &__education {
+    //   grid-area: education;
+    //   grid-column: 1/2;
+    //   grid-row: 2/3;
+    // }
 
-    &__experience {
-      grid-area: experience;
-      grid-column: 2/3;
-      grid-row: 2/3;
-    }
+    // &__experience {
+    //   grid-area: experience;
+    //   grid-column: 2/3;
+    //   grid-row: 2/3;
+    // }
 
-    &__skills {
-      grid-area: skills;
-      grid-column: 1/3;
-      grid-row: 3/4;
-    }
+    // &__skills {
+    //   grid-area: skills;
+    //   grid-column: 1/3;
+    //   grid-row: 3/4;
+    // }
 
-    &__interest {
-    grid-area: interest;
-    grid-column: 1/3;
-    grid-row: 4/5;
-    }
+    // &__interest {
+    // grid-area: interest;
+    // grid-column: 1/3;
+    // grid-row: 4/5;
+    // }
   }
 }
