@@ -39,8 +39,11 @@
       
     .nav__list {
       color: $colour-font;
-      opacity: 0;
-      transform: translate(120%);
+
+      &--intro {
+        opacity: 0;
+        transform: translate(120%);
+      }
     }
   }
 }
@@ -65,8 +68,10 @@ a {
     position: relative; 
     left: 40px;   
     z-index: 1;
-    opacity: 0;
+}
 
+.logo__img-intro {
+  opacity: 0;
 }
 
 .logo__img--bright {

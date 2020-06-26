@@ -14,7 +14,7 @@
     <header class="header" id="navbar">
       <div class="logo" id="logo--hide">
         <a href="https://puteshestvennik2019.github.io/Open-Classrooms/Project3/index.html">
-          <img class="logo__img" id="logo__img" src="./public/img/logo.png" alt="">
+          <img class="logo__img logo__img-intro" id="logo__img" src="./public/img/logo.png" alt="">
           <img class="logo__img--bright" src="./public/img/logo-bright.png" alt="">
         </a>
       </div>
@@ -24,7 +24,7 @@
       </button>
 
       <nav class="nav" id="nav">
-        <ul class="nav__list" id="nav-list">
+        <ul class="nav__list nav__list--intro" id="nav-list">
           <li class="nav__link nav__link--active"> <a href="#about"><span class="char">&lt;</span>about<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#projects"><span class="char">&lt;</span>work<span class="char">/></span></a> </li>
           <li class="nav__link"> <a href="#contact"><span class="char">&lt;</span>contact<span class="char">/></span></a></li>
@@ -50,13 +50,14 @@
           <img src="./public/img/cartooned.png" alt="A cartooned myself" class="about-me__img"> 
           <div class="about-me__body">
             <p>Hi, I am Artur Kasprzak.</p>
-            <p>I have recently graduated from <a href="https://www.openclassrooms.com"><strong>Open Classrooms</strong></a> as a Web Developer.</p>
+            <p>Soon, I will have graduated from <a href="https://www.openclassrooms.com"><strong>Open Classrooms</strong></a> as a Web Developer.</p>
             <p>I build web applications, websites and, when time allows 
               (<span style="color:red">!</span><span style="color:orange">important</span>), 
               I compete in programming contests.</p>
             <p>I code mainly in <strong>Java</strong> and <strong>JavaScript (ES6+)</strong>, but I also enjoy working with Python's Flask and Django.</p>
             <p>Since I don't have my own style, I use <strong>CSS</strong> and <strong>Sass</strong></p>
             <p>Last but not least, I love studying and challenging myself.</p>
+            <p>This is the first generation of my portfolio website.</p>
           </div>
         </section>
 
@@ -134,24 +135,6 @@
           return "string";
         });
 
-        let i = 0;
-        // boolean variable to flag timeout before moving cursor to next line
-        let flag = false;
-        const pauseAtEnd = pauseAtStart = 2000;
-        const writtingSpeed = 30;
-        const nextLinePause = 600;
-        const txt = " My name is Artur\n> I write code\n>";
-        const terminal = document.getElementById("terminal");
-
-        // hide this element until switchLogos has terminated
-        document.getElementById("logo--hide").classList.add("hide");
-
-        // disable scroll while intro is played
-        // document.body.style.overflow = "hidden";
-        disableScroll();
-
-        setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter());}, pauseAtStart);
-
         /* 
         ========================================
         Prevent mouse scroll and keybord strokes
@@ -209,6 +192,29 @@
         It's probably easier to start over with clear OOD
         ........................................................................
         */
+
+        
+          let i = 0;
+          // boolean variable to flag timeout before moving cursor to next line
+          let flag = false;
+          const pauseAtEnd = pauseAtStart = 2000;
+          const writtingSpeed = 30;
+          const nextLinePause = 600;
+          const txt = " My name is Artur\n> I write code\n>";
+          const terminal = document.getElementById("terminal");
+
+        if (window.screen.top === 0) {
+
+          // hide this element until switchLogos has terminated
+          document.getElementById("logo--hide").classList.add("hide");
+
+          // disable scroll while intro is played
+          // document.body.style.overflow = "hidden";
+          disableScroll();
+
+          setTimeout(() => {document.addEventListener('DOMContentLoaded', typeWriter());}, pauseAtStart);
+        }
+
         function typeWriter() {
           if (flag) {
             flag = false;
