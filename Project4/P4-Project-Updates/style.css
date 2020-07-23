@@ -13,6 +13,10 @@ button {
     outline: none!important;
 }
 
+li {
+    padding-bottom: 10px;
+}
+
 a:hover {
     text-decoration: none;
     cursor: pointer;
