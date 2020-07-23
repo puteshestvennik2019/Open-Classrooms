@@ -25,7 +25,7 @@
 
 /* Animation */
 .cursor {
-  font-size: 3rem;
+  font-size: 3em;
   animation: 1s blink step-end infinite;
   -webkit-animation: 1s blink step-end infinite;
   -moz-animation: 1s blink step-end infinite;
@@ -104,7 +104,7 @@ body {
   background: #0A1A30;
   color: #DDDDDD;
   padding: 0 2.5em;
-  font-size: 1rem;
+  font-size: 1em;
   line-height: 1.2;
   margin: 0;
   font-family: "Roboto", sans-serif;
@@ -136,15 +136,15 @@ h1, h2, h3, #terminal {
 }
 
 h1, #terminal {
-  font-size: 3rem;
+  font-size: 3em;
 }
 
 h2 {
-  font-size: 2.25rem;
+  font-size: 2.25em;
 }
 
 h3 {
-  font-size: 1.5rem;
+  font-size: 1.5em;
 }
 
 strong {
