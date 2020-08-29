@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+	<head>
+	    <meta charset="utf-8">
+	    <meta name="keywords" content="">
+	    <meta name="description" content="">
+	    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+	    
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="style.css">    
+	</head>
+	<body>
+		<div id="list">
+
+		</div>
+		<script type="text/javascript">
+			const list = document.getElementById("list");
+			let apiRequest = new XMLHttpRequest();
+
+			apiRequest.open('GET', 'http://localhost:3000/api/furniture/');
+			apiRequest.send();
+
+			apiRequest.onreadystatechange = () => {
+				if (apiRequest.status === 404) {
+					// handle Not Found
+					// return
+				}
+				if (apiRequest.readyState === 4) {
+					const response = JSON.parse(apiRequest.response);
+					//list.textContent = response[1].varnish;
+
+					for (let item of response) {
+						console.log(item);
+						let product = document.createElement("product");
+						product.innerHTML = "Product ID: " + item._id + '<br />' + "Varnish: " + item.varnish + '<br />' + "name: " + item.name + '<br />' + "price: " + item.price + "$" + '<br />' + "description: " + item.description + '<br />' + '<br />';
+						list.appendChild(product);
+					}
+				}
+			};
+		</script>
+	</body>
+</html>
