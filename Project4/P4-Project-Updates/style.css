@@ -830,6 +830,9 @@ h4 {
 .bg-atlanta-20made-20sign-20orange {
     background-image: url("img/atlanta-sign-orange.webp");
 }
+.bg-atlanta-20made-20sign {
+	background-image: url("img/atlanta-sign.webp");
+}
 
 @media (max-width: 1024px) {
     .bloc {
