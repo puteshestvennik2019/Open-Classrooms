@@ -103,7 +103,7 @@ ul {
 .item-detailed-view-header {
 	display: flex;
 	background-color: lightgray;
-	padding: 0.8rem 1rem;
+	padding: 10px 15px;
 	justify-content: space-between;
 	align-items: center;
 }
@@ -123,7 +123,7 @@ ul {
 
 .item-detailed-view-body {
 	display: flex;
-	padding: 0.8rem 1rem;
+	padding: 10px 15px;
 	justify-content: space-between;
 	align-items: flex-start;
 }
@@ -132,8 +132,8 @@ ul {
 
 .shopping-cart {
 	text-align: center;
-	padding-left: 100px;
-	padding-right: 100px;
+	padding: 100px;
+    padding-top: 40px;
 }
 
 .shopping-cart-header {
