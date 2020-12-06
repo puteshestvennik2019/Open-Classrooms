@@ -20,7 +20,7 @@ let selectedItem = {
 };
 
 
-// session storage
+// local storage
 if (isNaN(parseInt(localStorage.getItem('shoppingCart'))))
 	localStorage.setItem('shoppingCart', 0);
 
@@ -31,21 +31,21 @@ const carousel = document.getElementById("carousel");
 const itemDetailedView = document.getElementById("item-detailed-view");
 const popupOverlay = document.getElementById("overlay")
 const itemDetailedViewCloseButton = document.getElementById("item-detailed-view--close");
+const API = 'http://localhost:3000/api/furniture/';
 let apiRequest = new XMLHttpRequest();
 
-apiRequest.open('GET', 'http://localhost:3000/api/furniture/');
+apiRequest.open('GET', API);
 apiRequest.send();
 
 apiRequest.onreadystatechange = () => {
 	if (apiRequest.status === 404) {
-		// handle "Not Found"
-		// returned
+		// handle "Not Found" returned
 	}
+
 	if (apiRequest.readyState === 4) {
 		const response = JSON.parse(apiRequest.response);
-		// list.textContent = response[1].varnish;
 
-		// handle a case when fewer than 3 items are returned
+		// i < min(3, response.length)
 		for (let i = 0; i < 3; i++) {
 			addElementCarousel(response[i], i);
 		}
@@ -157,7 +157,9 @@ function changeVarnish(newColour) {
 
 function updateCartItems() {
 	const cart = document.getElementById('items-in-cart');
-	cart.innerHTML = parseInt(localStorage.getItem('shoppingCart'));
+	if (cart != null) {
+		cart.innerHTML = parseInt(localStorage.getItem('shoppingCart'));
+	}
 }
 
 function closePopupWindow () {
@@ -196,11 +198,13 @@ function addItm(item) {
 	const img = document.createElement("img");
 	img.src = item.imageUrl;
 	img.className += "mx-auto h-100 w-100 list-item-image";
-	// add alt
+
+	// === add alt ===
 	product.appendChild(img);
 
 	const title = document.createElement("div");
 	title.className += "product-toggle-title";
+
 	// these two are separate elements to enable CSS transformation
 	const h3 = document.createElement("h3");
 	h3.className += "product-toggle-title--title";
@@ -212,12 +216,12 @@ function addItm(item) {
 }
 
 function addElement(item) {
+
 	// create product div
 	let product = document.createElement("div");
 	product.className += "list-item col-4 border p-2";
 
 	product.setAttribute("data-id", item._id);
-	// product.appendChild(addRow("ID", item._id));
 	product.appendChild(addRow("Name", item.name));
 	product.appendChild(addRow("Varnish", item.varnish));
 	product.appendChild(addRow("Price", item.price));
@@ -252,8 +256,9 @@ function addCol(data, title) {
 	return col;
 }
 
-
+// =============
 // Shopping cart
+// =============
 
 let updateQuantityBtns = document.getElementsByClassName('update-quantity');
 
@@ -314,9 +319,11 @@ function addToCart() {
 		alert("Please select varnish");
 		return;
 	}
-	// get no of items already added
+
+	// get number of items already added
 	let itemsInCart = parseInt(localStorage.getItem('shoppingCart')) + 1;
-	// update local storage and nav
+
+	// update local storage and navbar
 	localStorage.setItem('shoppingCart', itemsInCart);
 	updateCartItems();
 	updateProductInCart();
@@ -327,9 +334,9 @@ function checkInput(inputElement) {
 		inputElement.value = 0;
 }
 
-//
+// =========
 // cart.html
-// 
+// =========
 
 function populateCart() {
 	let cart = JSON.parse(localStorage.getItem('itemsInCart'));
@@ -373,7 +380,7 @@ function populateCart() {
 					itemQty.appendChild(itemQtyUpdate);
 
 					const itemPrice = document.createElement('div');
-					itemPrice.className += "shopping-cart-col shopping-cart-col-price";
+					itemPrice.className += "shopping-cart-col shopping-cart-col-price justify-content-end pr-4";
 					itemPrice.innerHTML = "£" + cart[obj].price;
 
 					cartRow.appendChild(item);
@@ -391,3 +398,71 @@ function populateCart() {
 }
 
 populateCart();
+
+function submitOrder() {
+	checkInput();
+	event.preventDefault();
+	const order = {
+		contact : {
+			firstName : 'fname',
+			lastName : 'lname',
+			address : 'address',
+			city : 'city',
+			email : 'email@email.com'
+		},
+		products : ["5beaadda1c9d440000a57d98", "5beaadda1c9d440000a57d98"]
+	}
+
+	sendToAPI(order);
+
+	// reset form manually
+	// document.getElementById("order-confirmation").reset();
+}
+
+function checkInput() {
+	const form = document.getElementById("order-confirmation").children;
+	// for (let i = 0; i < form.length; i++) {
+	// 	console.log(form[i]);
+	// }
+
+}
+
+function makeRequest(data) {
+	// alert('Request called');
+
+	return new Promise((resolve, reject) => {
+		let request = new XMLHttpRequest();
+		request.open('POST', API + 'order');
+		request.onreadystatechange = () => {
+			if (request.readyState === 4) {
+				if (request.status === 201) {
+
+					// alert('Promise resolved');
+
+					resolve(JSON.parse(request.response));
+				}
+				else {
+					reject(JSON.parse(request.response));
+				}
+			}
+		};
+		request.setRequestHeader('Content-Type', 'application/json');
+		request.send(JSON.stringify(data));
+	});
+}
+
+async function sendToAPI(data) {
+	// alert('Function called');
+
+	try {
+		const requestPromise = makeRequest(data);
+		const response = await requestPromise;
+
+		alert(response.contact.firstName);
+		alert(response.products[0].name);
+		alert(response.orderId);
+	}
+	catch(errorResponse) {
+		alert('Request failed with error: ' + errorResponse.error);
+	}
+}

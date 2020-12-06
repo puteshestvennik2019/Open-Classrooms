@@ -1,6 +1,5 @@
 body {
 	box-sizing: border-box;
-	width: 90%;
 }
 
 nav { 
@@ -193,4 +192,9 @@ ul {
 
 .cartVarnish {
 	color: brown;
+}
+
+.order-confirmation > input {
+	margin-bottom: .7em;
+	width: 100%;
 }

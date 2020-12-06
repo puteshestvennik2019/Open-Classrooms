@@ -18,8 +18,8 @@
 		<title>Orinoco - Oak furniture store</title>
 	</head>
 	<body class="mx-auto">
-		<header class="container-fluid mb-5">
-			<nav class="navbar navbar-expand-lg">
+		<header class="mb-5">
+			<nav class="navbar navbar-expand-lg fixed-top">
 				<div class="col-2">
 					<a class="navbar-brand mw-25" href="index.html">
 			            <img src="images/orinoco-logo.png" height="60" alt="Orinoco Logo" />
@@ -35,7 +35,6 @@
 							<a href="cart.html" class="text-primary">
 								<i class="fa fa-shopping-cart pr-1"></i>
 								Cart
-								<span id="items-in-cart" class="pl-1"></span>
 							</a>
 						</li>
 					</ul>
@@ -43,36 +42,43 @@
 			</nav>
 		</header>
 
-		<section class="shopping-cart">
-			<h3 class="shopping-cart-header">Shopping cart</h3>
-			<div class="shopping-cart-row">
-				<div class="shopping-cart-col shopping-cart-label shopping-cart-col-item">Item
-					<!-- <span class="varnish">Varnish: </span> -->
-				</div>
-				<div class="shopping-cart-col shopping-cart-label shopping-cart-col-quantity">Quantity</div>
-				<div class="shopping-cart-col shopping-cart-label shopping-cart-col-price">Price</div>
-			</div>
-			<div id="shopping-cart-items" class="shopping-cart-items">
-				<!-- <div class="shopping-cart-row">
-					<div class="shopping-cart-col shopping-cart-col-item"></div>
-					<div class="shopping-cart-col shopping-cart-col-quantity">
-						<input class="shopping-cart-col-quantity-input" type="number" value="0">
-	                    <a href="#" class="update-quantity">Update</a>
-					</div>
-					<div class="shopping-cart-col shopping-cart-col-price">19.99</div>
-				</div>
+		<main class="pt-5 container d-flex">
+			<section class="border p-3 m-3 shopping-cart col-lg-8">
 				<div class="shopping-cart-row">
-					<div class="shopping-cart-col shopping-cart-col-item"></div>
-					<div class="shopping-cart-col shopping-cart-col-quantity">
-						<input class="shopping-cart-col-quantity-input" type="number" value="0">
-	                    <a href="#" class="update-quantity">Update</a>
+					<div class="shopping-cart-col shopping-cart-label shopping-cart-col-item">Item
 					</div>
-					<div class="shopping-cart-col shopping-cart-col-price">19.99</div>
+					<div class="shopping-cart-col shopping-cart-label shopping-cart-col-quantity">Quantity</div>
+					<div class="shopping-cart-col shopping-cart-label shopping-cart-col-price">Price</div>
+				</div>
+				<div id="shopping-cart-items" class="shopping-cart-items">
+				</div>
+				<div class="shopping-cart-total">Total: 
+					<span id="shopping-cart-total"></span>
+				</div>
+			</section>
+			<section class="border p-3 m-3 summary col-lg-4">
+				<h4 class="mb-5">Proceed with the order</h4>
+				<form id="order-confirmation" class="order-confirmation ml-2" onsubmit="submitOrder()">
+					<label for="fname">First name:</label><br>
+					<input type="text" name="fname" required><br>
+					<label for="lname">Last name:</label><br>
+					<input type="text" name="lname" required><br>
+					<label for="address">Address:</label><br>
+					<input type="text" name="address" required><br>
+					<label for="city">City:</label><br>
+					<input type="text" name="city" required><br>
+					<label for="email">email:</label><br>
+					<input type="email" name="email" required><br>
+					<div class="d-block">
+						<input class="d-inline" type="checkbox" name="agreement" required>
+						<label class="d-inline" for="agreement">I have read and understood <a href="#">Terms and Conditions</a></label><br>
+					</div>
+					<input class="mt-2 btn btn-primary" type="submit" name="submit" value="Submit order"></input>
+				</form>
+				<!-- <div class="ml-2">
+					<button class="btn btn-primary" onclick="submitOrder()">Place order</button>
 				</div> -->
-			</div>
-			<div class="shopping-cart-total">Total: 
-				<span id="shopping-cart-total"></span>
-			</div>
-		</section>
+			</section>
+		</main>
 	</body>
 </html>

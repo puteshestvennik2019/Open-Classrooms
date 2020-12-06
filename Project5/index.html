@@ -20,8 +20,8 @@
 		<title>Orinoco - Oak furniture store</title>
 	</head>
 	<body class="mx-auto">
-		<header class="container-fluid mb-5">
-			<nav class="navbar navbar-expand-lg">
+		<header class="mb-5">
+			<nav class="navbar navbar-expand-lg fixed-top">
 				<div class="col-2">
 					<a class="navbar-brand mw-25" href="index.html">
 			            <img src="images/orinoco-logo.png" height="60" alt="Orinoco Logo" />
@@ -45,109 +45,111 @@
 			</nav>
 		</header>
 
-		<div id="item-detailed-view" class="item-detailed-view">
-			<div class="item-detailed-view-header">
-				<h3 id="item-detailed-view-header--title" class="item-detailed-view-header--title">" "</h3>
-				<button id="item-detailed-view--close" class="close-button">&times;</button>
-			</div>
-			<div class="item-detailed-view-body">
-				<img src="" id="item-detailed-view-body--img" class="item-detailed-view-body--img col-6">
-				<div class="d-flex flex-column col-6">
-					<ul class="ml-0 pl-0">
-						<li class="d-flex">
-							<span class="col-4">Description: </span>
-							<div id="item-detailed-view-body--description" class="item-detailed-view-body--description">
-						</li>
-						<li class="d-flex">
-							<span class="col-4">Price: </span>
-							<div id="item-detailed-view-body--price" class="item-detailed-view-body--price">
-						</li>
-						<li class="d-flex">
-							<span class="col-4">Varnish: </span>
-							<div id="item-detailed-view-body--varnish" class="item-detailed-view-body--varnish"></div>
-						</li>
-					</ul>
+		<main class="pt-5">
+			<div id="item-detailed-view" class="item-detailed-view">
+				<div class="item-detailed-view-header">
+					<h3 id="item-detailed-view-header--title" class="item-detailed-view-header--title">" "</h3>
+					<button id="item-detailed-view--close" class="close-button">&times;</button>
 				</div>
-			</div>
-		</div>
-
-		<div class="overlay" id="overlay"></div>
-	
-		<div class="container">
-			<div class="row mb-5">
-				<div class="col text-center">
-					<!-- <h2 class="title">
-						Orinoco - Oak furniture with character
-					</h2>
-					<h4 class="subtitle">
-						Hand-built with pride
-					</h4> -->
-					<div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="3500">
-				        <ol class="carousel-indicators">
-				            <li data-target="#carouselControls" data-slide-to="0" class="active"></li>
-				            <li data-target="#carouselControls" data-slide-to="1"></li>
-				            <li data-target="#carouselControls" data-slide-to="2"></li>
-				        </ol>
-				        <div id="carousel" class="carousel-inner" style="height: 60vh">
-
-					        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
-					            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					        	<span class="sr-only">Previous</span>
-					        </a>
-					        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
-						        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-						        <span class="sr-only">Next</span>
-					        </a>   
-				        </div>
+				<div class="item-detailed-view-body">
+					<img src="" id="item-detailed-view-body--img" class="item-detailed-view-body--img col-6">
+					<div class="d-flex flex-column col-6">
+						<ul class="ml-0 pl-0">
+							<li class="d-flex">
+								<span class="col-4">Description: </span>
+								<div id="item-detailed-view-body--description" class="item-detailed-view-body--description"></div>
+							</li>
+							<li class="d-flex">
+								<span class="col-4">Price: </span>
+								<div id="item-detailed-view-body--price" class="item-detailed-view-body--price"></div>
+							</li>
+							<li class="d-flex">
+								<span class="col-4">Varnish: </span>
+								<div id="item-detailed-view-body--varnish" class="item-detailed-view-body--varnish"></div>
+							</li>
+						</ul>
 					</div>
 				</div>
 			</div>
-			<div class="row mt-2">
-				<div class="col-12 col-lg-4">
-			        <div class="mb-4 mb-lg-0 border-primary border-right">
-			        	<div class="col-3 d-inline-block">
-			          		<img src="images/delivery.png" alt="delivery" class="card-img-top">
-			          	</div>
-			          	<div class="col-8 d-inline-block card-body float-right">
-				          <h5 class="card-text">
-				          	Free delivery on all orders
-				          </h5>
-				      	</div>
-			        </div>
-			    </div>
-			    <div class="col-12 col-lg-4">
-			        <div class="mb-4 mb-lg-0 border-primary border-right">
-			          	<div class="col-3 d-inline-block">
-			          		<img src="images/customizable.png" alt="customizable" class="card-img-top">
-			          	</div>
-			          	<div class="col-8 d-inline-block card-body float-right">
-				          <h5 class="card-text">
-				          	Made to measure
-				          </h5>
-				      	</div>
-			        </div>
-			    </div>
-			    <div class="col-12 col-lg-4">
-			        <div class="mb-4 mb-lg-0">
-			            <div class="col-3 d-inline-block">
-			          		<img src="images/affordable.png" alt="affordable" class="card-img-top">
-			          	</div>
-			          	<div class="col-8 d-inline-block card-body float-right">
-				          <h5 class="card-text">
-				          	0% finance available
-				          </h5>
-				      	</div>
+
+			<div class="overlay" id="overlay"></div>
+		
+			<div class="container">
+				<div class="row mb-5">
+					<div class="col text-center">
+						<!-- <h2 class="title">
+							Orinoco - Oak furniture with character
+						</h2>
+						<h4 class="subtitle">
+							Hand-built with pride
+						</h4> -->
+						<div id="carouselControls" class="carousel slide" data-ride="carousel" data-interval="3500">
+					        <ol class="carousel-indicators">
+					            <li data-target="#carouselControls" data-slide-to="0" class="active"></li>
+					            <li data-target="#carouselControls" data-slide-to="1"></li>
+					            <li data-target="#carouselControls" data-slide-to="2"></li>
+					        </ol>
+					        <div id="carousel" class="carousel-inner" style="height: 60vh">
+
+						        <a class="carousel-control-prev" href="#carouselControls" role="button" data-slide="prev">
+						            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+						        	<span class="sr-only">Previous</span>
+						        </a>
+						        <a class="carousel-control-next" href="#carouselControls" role="button" data-slide="next">
+							        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+							        <span class="sr-only">Next</span>
+						        </a>   
+					        </div>
+						</div>
+					</div>
+				</div>
+				<div class="row mt-2">
+					<div class="col-12 col-lg-4">
+				        <div class="mb-4 mb-lg-0 border-primary border-right">
+				        	<div class="col-3 d-inline-block">
+				          		<img src="images/delivery.png" alt="delivery" class="card-img-top">
+				          	</div>
+				          	<div class="col-8 d-inline-block card-body float-right">
+					          <h5 class="card-text">
+					          	Free delivery on all orders
+					          </h5>
+					      	</div>
+				        </div>
 				    </div>
-			    </div>
+				    <div class="col-12 col-lg-4">
+				        <div class="mb-4 mb-lg-0 border-primary border-right">
+				          	<div class="col-3 d-inline-block">
+				          		<img src="images/customizable.png" alt="customizable" class="card-img-top">
+				          	</div>
+				          	<div class="col-8 d-inline-block card-body float-right">
+					          <h5 class="card-text">
+					          	Made to measure
+					          </h5>
+					      	</div>
+				        </div>
+				    </div>
+				    <div class="col-12 col-lg-4">
+				        <div class="mb-4 mb-lg-0">
+				            <div class="col-3 d-inline-block">
+				          		<img src="images/affordable.png" alt="affordable" class="card-img-top">
+				          	</div>
+				          	<div class="col-8 d-inline-block card-body float-right">
+					          <h5 class="card-text">
+					          	0% finance available
+					          </h5>
+					      	</div>
+					    </div>
+				    </div>
+				</div>
+				<div class="row" height="100px">
+					<a href="#list" class="mx-auto my-3">
+						<button type="button" class="btn-primary">View range</button>
+					</a>
+				</div>
+				<div id="list" class="range row mt-4">
+				</div>
 			</div>
-			<div class="row" height="100px">
-				<a href="#list" class="mx-auto my-3">
-					<button type="button" class="btn-primary">View range</button>
-				</a>
-			</div>
-			<div id="list" class="range row mt-4">
-			</div>
-		</div>
+		</main>
 
 	</body>
 </html>
