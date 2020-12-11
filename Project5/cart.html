@@ -60,15 +60,15 @@
 				<h4 class="mb-5">Proceed with the order</h4>
 				<form id="order-confirmation" class="order-confirmation ml-2" onsubmit="submitOrder()">
 					<label for="fname">First name:</label><br>
-					<input type="text" name="fname" required><br>
+					<input type="text" name="fname" required maxlength="100"><br>
 					<label for="lname">Last name:</label><br>
-					<input type="text" name="lname" required><br>
+					<input type="text" name="lname" required maxlength="100"><br>
 					<label for="address">Address:</label><br>
-					<input type="text" name="address" required><br>
+					<input type="text" name="address" required maxlength="200"><br>
 					<label for="city">City:</label><br>
-					<input type="text" name="city" required><br>
+					<input type="text" name="city" required maxlength="100"><br>
 					<label for="email">email:</label><br>
-					<input type="email" name="email" required><br>
+					<input type="email" name="email" required maxlength="200"><br>
 					<div class="d-block">
 						<input class="d-inline" type="checkbox" name="agreement" required>
 						<label class="d-inline" for="agreement">I have read and understood <a href="#">Terms and Conditions</a></label><br>
