@@ -283,7 +283,7 @@ function checkInput(input) {
 			alert('To order more than 100 units, please contact our customer service');
 			return MAX_LIMIT_PER_ITEM;
 		}
-		else return input;
+		else return Math.floor(input);
 	}
 }
 
