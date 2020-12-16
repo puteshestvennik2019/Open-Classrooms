@@ -34,11 +34,16 @@ const carousel = document.getElementById("carousel");
 const itemDetailedView = document.getElementById("item-detailed-view");
 const popupOverlay = document.getElementById("overlay")
 const itemDetailedViewCloseButton = document.getElementById("item-detailed-view--close");
+
 const API = 'http://localhost:3000/api/furniture/';
 let apiRequest = new XMLHttpRequest();
 
-apiRequest.open('GET', API);
-apiRequest.send();
+if ($('body').is('.home-page')) {
+
+	apiRequest.open('GET', API);
+	apiRequest.send();
+
+}
 
 apiRequest.onreadystatechange = () => {
 	if (apiRequest.status === 404) {
@@ -256,20 +261,29 @@ function addCol(data, title) {
 // Shopping cart
 // =============
 
+if ($('body').is('.cart-page')) {
+	populateCart();
+}
+
 function updateTotal() {
 	let total = 0;
-	const items = document.getElementById('shopping-cart-items').children;
-	for (let i = 0; i < items.length; i++) {
-		const qtyElement = items[i].getElementsByClassName('shopping-cart-col-quantity-input')[0];
 
-		// check input before updating
-		const qty = checkInput(qtyElement.value);
-		qtyElement.value = qty;
+	if (document.getElementById('shopping-cart-items').children != null) {
 
-		const price = parseFloat(items[i].getElementsByClassName('shopping-cart-col-price')[0].innerHTML.replace('£',''));
-		let partial = Math.round(price * qty * 100) / 100;
-		total = Math.round((total + partial) * 100) / 100;
+		const items = document.getElementById('shopping-cart-items').children;
+		for (let i = 0; i < items.length; i++) {
+			const qtyElement = items[i].getElementsByClassName('shopping-cart-col-quantity-input')[0];
+
+			// check input before updating
+			const qty = checkInput(qtyElement.value);
+			qtyElement.value = qty;
+
+			const price = parseFloat(items[i].getElementsByClassName('shopping-cart-col-price')[0].innerHTML.replace('£',''));
+			let partial = Math.round(price * qty * 100) / 100;
+			total = Math.round((total + partial) * 100) / 100;
+		}
 	}
+
 	const totalSpan = document.getElementById('shopping-cart-total');
 	totalSpan.innerHTML = '£' + total;
 }
@@ -312,7 +326,9 @@ function updateProductInCart(fromCart, newQty = 1) {
 	}
 	// Update was made inside the cart
 	else {
+		itemsInCart[selectedItem.id].varnish[selectedVarnish] != undefined
 		prevQty = itemsInCart[selectedItem.id].varnish[selectedVarnish];
+		
 		itemsInCart[selectedItem.id].varnish[selectedVarnish] = newQty;
 
 		// same item with other varnishes might still be in the cart
@@ -392,7 +408,6 @@ function populateCart() {
 					
 					const cartRow = document.createElement('div');
 					cartRow.className += "shopping-cart-row";
-					cartRow.style = "height: 120px";
 
 					// DATASET
 					// add dataset for future cart updates
@@ -444,8 +459,6 @@ function populateCart() {
 	}
 }
 
-populateCart();
-
 let updateQuantityBtns = document.getElementsByClassName('update-quantity');
 
 for (let i = 0; i < updateQuantityBtns.length; i++) {
@@ -472,10 +485,16 @@ function updateLocalStorage(updateButton) {
 	updateTotal();
 
 	const qty = updateButton.parentElement.children[0].value;
+
+	// remove row from the cart
+	if (qty == 0) {
+		row.className += " fade-shrink";
+	}
+
 	updateProductInCart(true, qty);
 }
 
-function submitOrder() {
+async function submitOrder() {
 	event.preventDefault();
 
 	if (!checkForm()) {
@@ -483,14 +502,21 @@ function submitOrder() {
 		return;
 	}
 
-	const order = getOrderInfo();
+	// check if there is anything in the cart
+	if (parseInt(localStorage.getItem('shoppingCart')) > 0) {
+		const order = getOrderInfo();
 
-	if (order != undefined)
-		sendToAPI(order);
-
-	// reset form manually and clear localStorage
-	document.getElementById("order-confirmation").reset();
-	localStorage.clear();
+		if (order != undefined) {
+			if (await sendToAPI(order)) {
+				// reset form manually and clear localStorage
+				document.getElementById("order-confirmation").reset();
+				localStorage.clear();
+			}
+			else alert('Your order was not processed');
+		}
+		else alert("We are sorry. There is a problem with an item in your cart.")
+	}
+	else alert('Your cart is empty');
 }
 
 function getOrderInfo() {
@@ -537,7 +563,8 @@ function checkForm() {
 
 	// Basic checks are done by HTML
 
-	if (strip(form.elements["fname"].value).length === 0 || strip(form.elements["lname"].value).length === 0 || strip(form.elements["city"].value).length === 0) {
+	if (strip(form.elements["fname"].value).length === 0 || strip(form.elements["lname"].value).length === 0 ||
+	 	strip(form.elements["city"].value).length === 0 || strip(form.elements["address"].value).length === 0) {
 		return false;
 	}
 
@@ -550,18 +577,17 @@ function strip(str) {
 }
 
 function makeRequest(data) {
-	// alert('Request called');
-
 	return new Promise((resolve, reject) => {
 		let request = new XMLHttpRequest();
 		request.open('POST', API + 'order');
 		request.onreadystatechange = () => {
 			if (request.readyState === 4) {
+				console.log(request)
 				if (request.status === 201) {
-
-					// alert('Promise resolved');
-
 					resolve(JSON.parse(request.response));
+				}
+				else if (request.status === 0 || (request.status >= 500 && request.status < 600)) {
+					reject({error: 'Server did not reply'});
 				}
 				else {
 					reject(JSON.parse(request.response));
@@ -574,17 +600,21 @@ function makeRequest(data) {
 }
 
 async function sendToAPI(data) {
-
 	try {
 		const requestPromise = makeRequest(data);
 		const response = await requestPromise;
 
-		if (response.orderId != undefined)
+		if (response.orderId != undefined) {
 			alert(`Your order ${response.orderId} is being processed`);
-		else
+			return true;
+		}
+		else {
 			alert("Something went wrong");
+			return false;
+		}
 	}
 	catch(errorResponse) {
 		alert('Request failed with error: ' + errorResponse.error);
+		return false;
 	}
 }
