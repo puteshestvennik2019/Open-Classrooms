@@ -46,30 +46,34 @@ if ($('body').is('.home-page')) {
 }
 
 apiRequest.onreadystatechange = () => {
-	if (apiRequest.status === 404) {
-		// handle "Not Found" returned
+	console.log(apiRequest.status);
+	if (!apiRequest.status || apiRequest.status >= 300) {
+		const carousel = document.getElementById('carouselControls');
+		carousel.innerHTML = "<h2>There has been problem retrieving data from the server</h2>";
 	}
+	else {
 
-	if (apiRequest.readyState === 4) {
-		const response = JSON.parse(apiRequest.response);
+		if (apiRequest.readyState === 4) {
+			const response = JSON.parse(apiRequest.response);
 
-		// i < min(3, response.length)
-		for (let i = 0; i < 3; i++) {
-			addElementCarousel(response[i], i);
+			// i < min(3, response.length)
+			for (let i = 0; i < 3; i++) {
+				addElementCarousel(response[i], i);
+			}
+			for (let item of response) {
+				addItm(item);
+			}
 		}
-		for (let item of response) {
-			addItm(item);
+
+		const openDetailedView = document.querySelectorAll(".list-item");
+
+		for (let i = 0; i < openDetailedView.length; i++) {
+			openDetailedView[i].addEventListener('click', () => {
+				itemDetailedView.classList.add('item-detailed-view-active');
+				popupOverlay.classList.add('overlay-active');
+				detailedView(openDetailedView[i]);
+			});
 		}
-	}
-
-	const openDetailedView = document.querySelectorAll(".list-item");
-
-	for (let i = 0; i < openDetailedView.length; i++) {
-		openDetailedView[i].addEventListener('click', () => {
-			itemDetailedView.classList.add('item-detailed-view-active');
-			popupOverlay.classList.add('overlay-active');
-			detailedView(openDetailedView[i]);
-		});
 	}
 };
 
@@ -511,6 +515,8 @@ async function submitOrder() {
 				// reset form manually and clear localStorage
 				document.getElementById("order-confirmation").reset();
 				localStorage.clear();
+
+				location.reload();
 			}
 			else alert('Your order was not processed');
 		}
@@ -614,7 +620,6 @@ async function sendToAPI(data) {
 		}
 	}
 	catch(errorResponse) {
-		alert('Request failed with error: ' + errorResponse.error);
 		return false;
 	}
 }
